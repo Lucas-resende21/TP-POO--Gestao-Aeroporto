@@ -1,0 +1,34 @@
+<?php
+
+  include_once("class.Voo,php");
+    
+  class Viagem extends Voo
+  {
+    private $status;
+
+    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo,
+                                 $_cidadeOrigem, $_cidadeDestino, $_status)
+    {
+      parent::__construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, 
+                           $_cidadeOrigem, $_cidadeDestino);
+      $this->status = $_status;
+    }
+
+    private function setAeronave()
+    {
+      
+    }
+
+    private function getAeronave()
+    {
+      
+    }
+
+    private function calculaDuracao($_duracao, $_horarioPartida, $horarioChegada)
+    {
+      $_duracao = $_horarioChegada - $_horarioPartida;
+    }
+
+    private function __destruct() {}
+    
+  }
