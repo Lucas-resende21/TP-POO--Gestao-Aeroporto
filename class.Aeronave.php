@@ -27,7 +27,15 @@
         echo ("</p>");
         return("Objeto não foi construido");
       }
-        
+      $ii;
+      for($ii=0;$ii<3;$ii++){
+        $teste3 = ord($_reg[3+$ii]);
+        if($teste3<65 || $teste3>90){
+          print_r("Sufixo do registro invalido");
+          echo ("</p>");
+          return("Objeto não foi construido");
+        }  
+      }
       $this->fabricante = $_fab;
       $this->modelo = $_mod;
       $this->capPassageiros = $_capPassageiros;
