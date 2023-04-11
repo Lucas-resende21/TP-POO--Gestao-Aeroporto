@@ -26,15 +26,20 @@
       $this->_aeronaves[] = $aeronave;
     }
 
-    public function removeAeronave(Aeronave $aeronave) 
+    public function removeAeronave(Aeronave $aeronave){
 
-      for(i = 0; i < sizeof($aeronaves()); i++) {
+      for($i = 0; $i < sizeof($aeronaves()); $i++) {
           
-          if($aeronaves[i] == $aeronave)  {
-            unset($this->aeronaves[i]);
+          if($aeronaves[$i] == $aeronave)  {
+            unset($this->aeronaves[$i]);
           }
       }
     }
 
-    public function 
+    public function getAeronave(int $o){
+      print_r($this->_aeronaves[$o]);
+      echo ("</p>");
+    }
+
+    public function __destruct(){}
   }
