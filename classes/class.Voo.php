@@ -1,7 +1,7 @@
 <?php
 
-  include_once("class.Aeroporto,php");
-  include_once("class.Aeronave,php");
+  include_once("class.Aeroporto.php");
+  include_once("class.Aeronave.php");
   
     class Voo {
     protected $duracao;

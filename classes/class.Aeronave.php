@@ -1,11 +1,13 @@
 <?php  
+  include_once("class.Voo.php");
+
   class Aeronave{
     private $fabricante; 
     private $modelo;
     private $capPassageiros;
     private $capCarga;
     private $registro;
-    public function __construct(string $_fab, string $_mod, int $_capPassageiros, float $_capCarga, string $_reg){
+    public function __construct(string $_fab, string $_mod, int $_capPassageiros,        float $_capCarga, string $_reg){
       if(strlen($_reg)>6){
         print_r("Registro inválido, inserir menor");
         echo ("</p>");
