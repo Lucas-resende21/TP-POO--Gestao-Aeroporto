@@ -17,19 +17,16 @@
         print_r($companhias);
     }
 
-    /*
+    
     // Adicionando uma aeronave
     if ( 0 ) {
-        $data = new DateTime();
-        $data->setDate( 2023, 03, 27 );
-        $data->setTime( 8, 5, 0);
-        $pOff = new pontoOffline( $data );
-        $pOff->setTipo( TipoPonto::INICIO );        
-        $pOff->save();
+        
+        $companhia1->setAeronave("Embraer", "Super-tucano", "2", "500", "PP-GUO");
+        $companhia->save();
         //print_r( $pOff );
     }
 
-    // Carregando registros já persistidos da classe ponto offline
+    // Carregando Aeronaves
     if ( 0 ) {
         $pontos = pontoOffline::getRecords();
         print_r($pontos);
