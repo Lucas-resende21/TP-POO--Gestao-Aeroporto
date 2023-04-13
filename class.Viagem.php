@@ -2,7 +2,7 @@
 
   include_once("class.Voo,php");
     
-  class Viagem extends Voo
+   class Viagem extends Voo
   {
     private $status;
 
@@ -13,22 +13,11 @@
                            $_cidadeOrigem, $_cidadeDestino);
       $this->status = $_status;
     }
-
-    private function setAeronave()
-    {
-      
-    }
-
-    private function getAeronave()
-    {
-      
-    }
-
     private function calculaDuracao($_duracao, $_horarioPartida, $horarioChegada)
     {
       $_duracao = $_horarioChegada - $_horarioPartida;
     }
 
-    private function __destruct() {}
+    public function __destruct() {}
     
   }
