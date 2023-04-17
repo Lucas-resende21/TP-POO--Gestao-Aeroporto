@@ -1,6 +1,7 @@
 <?php
   include_once("class.Aeronave.php");
   include_once("class.Voo.php");
+  include_once("class.Passagem.php");
   include_once("persist.php");
   
   class Companhia extends persist{
@@ -12,6 +13,7 @@
     private $_sigla;
     private $_aeronaves = array();
     private $_voos = array();
+    private $_passagens = array(); 
     static $local_filename = "companhia.txt";
 
     
