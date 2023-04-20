@@ -1,3 +1,4 @@
+
 <?php
   include_once("persist.php");
   include_once("class.Passagem.php");
@@ -18,6 +19,22 @@
       $this->documento = $_documento;
     }
 
+    /*
+    public function setPassagem(int $_assento, int $_bagagens){
+      if($_assento>$this->aeronave->getCapacidade()){
+        throw("Assento indisponível");
+      }
+      elseif($this->assentos[$_assento] == 1){
+        throw("Assento indisponível");
+      }
+      else{
+         $this->assentos[$_assento] = 1;
+          $passagem = new Passagem($_assento,$_bagagens);
+        return($passagem);
+      }
+    }
+    */
+    
     public function compraPassagem(Voo $_voo, int $_assento, int $_bagagens){
         $this_passagens[] = $_voo->setPassagem($_assento, $_bagagens);
     }

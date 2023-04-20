@@ -8,8 +8,8 @@
   class Sistema extends persist{
     
     private $companhias = array();
+    private $aeroportos = array();
     private $clientes = array();
-    private $aeropostos = array();
     private $passagens = array();
     private $calendario //talvez seja um array
 
@@ -25,6 +25,11 @@
       }
     }
 
+    public function getCompanhias(){
+      print_r($this->companhias);
+      echo("</p>");
+    }
+
     public function criaAeroporto(Aeroporto $_aeroporto){
       $aeroportos->push($_aeroporto);
     }
@@ -36,7 +41,12 @@
         }
       }
     }
-
+    
+    public function getAeroportos(){
+      print_r($this->$aeroportos);
+      echo("</p>");
+    }
+    
     public function criaCliente(Cliente $_cliente){
       $clientes->push($_cliente);
     }
@@ -47,6 +57,11 @@
           unset($clientes[i]);
         }
       }
+    }
+
+    public function getClientes(){
+      print_r($this->clientes);
+      echo("</p>");
     }
 
     public function criaPassagem(Passagem $_passagem){
@@ -61,45 +76,12 @@
       }
     }
 
-    public function calendario(){
-      
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-public function criaPassagens(){
-      for($i=0; i<aeronave->capPassageiros; i++)
-        passagens[i] = 1;
-    }
-
-    public function setPassagem(int $_assento, int $_bagagens){
-      if($_assento>$this->aeronave->getCapacidade()){
-        throw("Assento indisponível");
-      }
-      elseif($this->assentos[$_assento] == 1){
-        throw("Assento indisponível");
-      }
-      else{
-         $this->assentos[$_assento] = 1;
-          $passagem = new Passagem($_assento,$_bagagens);
-        return($passagem);
-      }
-    }
-
     public function getPassagens(){
       print_r($this->passagens);
       echo("</p>");
     }
+
+    public function calendario(){
+      
+    }
+  }
