@@ -40,7 +40,6 @@
     public function setPassagens(){
       
     }
-
-    public function 
+    
     public function __destruct() {}
   }

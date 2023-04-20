@@ -1,22 +1,25 @@
 <?php
     require_once('global.php');
 
-    // Instanciando um novo objeto da classe companhia
+    // Instanciando um novo objeto da classe sistema
     if ( 1 ) {
-        $companhia1 = new Companhia("Azul", "BL01", "Blue", "888777666000108", "BL");
-        $companhia1->save();
+      $sistema = new Sistema;
+      $sistema->save();
     }
+
+  //Criando uma comoanhia dentro do sistema
     if ( 0 ) {
-        $companhia2 = new Companhia("Latam", "LT02", "Latim", "999888777000109", "");
-        $companhia2->save();
+      $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LTA");
+      $sistema->criaCompanhia($companhia1);
+      $sistema->save();
     }
 
     // Carregando registros já persistidos da classe companhia
     if ( 1 ) {
-        $companhias = companhia::getRecords();
-        print_r($companhias);
+      $sistema = Sistema::getRecords();
+      print_r($sistema->getCompanhias());
     }
-
+  /*
     
     // Adicionando uma aeronave
     if ( 0 ) {
@@ -55,8 +58,4 @@
         $funcBill->addPonto($pOn);
         $funcBill->save();
     }
-
-
   */
-
-
