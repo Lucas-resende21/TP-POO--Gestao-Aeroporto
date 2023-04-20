@@ -31,7 +31,7 @@
     }
 
     public function criaAssentos(){
-      for(int i=0; i<aeronave->capPassageiros; i++)
+      for($i=0; i<aeronave->capPassageiros; i++)
       {
         assentos[i] = 0;
       }
@@ -45,31 +45,6 @@
       print_r($this->assentos);
       echo("</p>");
     }
-
-    public function criaPassagens(){
-      for(int i=0; i<aeronave->capPassageiros; i++)
-        passagens[i] = 1;
-    }
-
-    public function setPassagem(int $_assento, int $_bagagens){
-      if($_assento>$this->aeronave->getCapacidade()){
-        throw("Assento indisponível");
-      }
-      elseif($this->assentos[$_assento] == 1){
-        throw("Assento indisponível");
-      }
-      else{
-         $this->assentos[$_assento] = 1;
-          $passagem = new Passagem($_assento,$_bagagens);
-        return($passagem);
-      }
-    }
-
-    public function getPassagens(){
-      print_r($this->passagens);
-      echo("</p>");
-
-  
 
     public function __destruct() {}
   }
