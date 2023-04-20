@@ -18,9 +18,8 @@
       $this->documento = $_documento;
     }
 
-    public function compraPassagem(Voo $_voo, int $_assento){
-        $_voo->getAssentos();
-          
+    public function compraPassagem(Voo $_voo, int $_assento, int $_bagagens){
+        $this_passagens[] = $_voo->setPassagem($_assento, $_bagagens);
     }
     
     public function __desctruct(){}
