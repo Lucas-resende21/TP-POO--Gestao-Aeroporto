@@ -30,7 +30,7 @@
       return get_called_class()::$local_filename;
     }
 
-    public function setAeronave(string $fab, string $mod, int $capPsg, float $capCarg, string $reg) {
+    public function adicionaAeronave(string $fab, string $mod, int $capPsg, float $capCarg, string $reg) {
 
       $aeronave = new Aeronave($fab, $mod, $capPsg, $capCarg, $reg);
       $this->_aeronaves[] = $aeronave;

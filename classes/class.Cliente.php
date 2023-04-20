@@ -1,6 +1,7 @@
 <?php
   include_once("persist.php");
   include_once("class.Passagem.php");
+  
   class Cliente extends persist{
     static $local_filename = "cliente.txt";
     static public function getFilename() {
