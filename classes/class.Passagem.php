@@ -15,4 +15,9 @@
       $this->assento = $_assento;
     }    
     public function __desctruct(){}
+
+    public function criaEscala(Voo $_voo)
+    {
+      
+    }
   }
