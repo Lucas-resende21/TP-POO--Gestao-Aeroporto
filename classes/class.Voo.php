@@ -2,8 +2,9 @@
 
   include_once("class.Aeroporto.php");
   include_once("class.Aeronave.php");
+  include_once("class.Passagem.php");
   
-    class Voo {
+    class Voo extends persist {
     protected $duracao;
     protected $horarioPartida;
     protected $horarioChegada;
@@ -57,6 +58,17 @@
     public function getPassagens(){
       print_r($this->passagens);
       echo("</p>");
+
+    public function setPassagem(int $_assento, int $_bagagens){
+      if($_assento>$this->aeronave->getCapacidade()){
+        throw("Assento indisponível");
+      }elseif($this->assentos[$_assento] == 1){
+        throw("Assento indisponível");
+      }else{
+         $this->assentos[$_assento] = 1;
+          $passagem = new Passagem($_assento,$_bagagens);
+        return($passagem);
+      }
     }
 
     public function __destruct() {}
