@@ -7,13 +7,10 @@ class Aeroporto{
 
     public function __construct(string $_sigla, string $_cidade, string $_estado){
       if(strlen($_sigla)>3){
-        print_r("Sigla inválida, inserir menor");
-        echo ("</p>");
-        return("Objeto não foi construido");}
-      elseif(strlen($_sigla)<3){
-        print_r("Sigla inválida, inserir maior");
-        echo ("</p>");
-        return("Objeto não foi construido");}
+        throw new Exception("Sigla inválida");
+      }elseif(strlen($_sigla)<3){
+        throw new Exception("Sigla invalido");
+      }
       $this->sigla = $_sigla;
       $this->cidade = $_cidade;
       $this->estado = $_estado;
