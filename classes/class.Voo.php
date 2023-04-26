@@ -14,6 +14,8 @@
     protected $aeronave;
     protected $assentos = array();
     protected $passagens = array();
+    protected $freqHora;
+    protected $freqDiaSem;
 
     public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Chegada)
     {
