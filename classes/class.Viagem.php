@@ -1,6 +1,6 @@
 <?php
 
-  include_once("class.Voo,php");
+  include_once("class.Voo.php");
     
    class Viagem extends Voo
   {

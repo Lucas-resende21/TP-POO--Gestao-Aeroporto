@@ -8,7 +8,7 @@
     }
 
   //Criando uma comoanhia dentro do sistema
-    if ( 0 ) {
+    if ( 1 ) {
       $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LTA");
       $sistema->criaCompanhia($companhia1);
       $sistema->save();

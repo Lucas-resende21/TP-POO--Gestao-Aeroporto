@@ -2,7 +2,7 @@
   include_once("persist.php");
   include_once("class.Aeroporto.php");
   include_once("class.Viagem.php");
-  include_once()
+  //include_once()
   class Passagem extends persist{
       static $local_filename = "passagem.txt";
       static public function getFilename() {
