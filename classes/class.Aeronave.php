@@ -1,5 +1,9 @@
 <?php  
-  class Aeronave{
+  include_once("persist.php")
+
+  class Aeronave extends persist{
+    
+    static $local_filename = "aeronave.txt";
     private $fabricante; 
     private $modelo;
     private $capPassageiros;
@@ -31,5 +35,10 @@
       $this->capCarga = $_capCarga;
       $this->registro = $_reg;
     }
+
+    static public function getFilename() {
+      return get_called_class()::$local_filename;
+    }
+
     public function __destruct(){}
   }

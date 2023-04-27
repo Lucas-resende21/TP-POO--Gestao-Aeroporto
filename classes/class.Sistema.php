@@ -15,8 +15,7 @@
     private $calendario; //talvez seja um array
 
     public function criaCompanhia(Companhia $_companhia){
-      $companhias->push($_companhia);
-      //$companhias[] = $_companhia;
+      $companhias[] = $_companhia;
     }
 
     public function removeCompanhia(Companhia $_companhia){
@@ -28,8 +27,9 @@
     }
 
     public function getCompanhias(){
-      print_r($this->companhias);
-      echo("</p>");
+      return $this->companhias;
+      //var_dump($this->companhias); 
+      //echo("</p>");
     }
 
     public function criaAeroporto(Aeroporto $_aeroporto){

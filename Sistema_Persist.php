@@ -1,40 +1,38 @@
 <?php
     require_once('global.php');
 
-    // Instanciando um novo objeto da classe sistema
-    if ( 1 ) {
-      $sistema = new Sistema;
-      $sistema->save();
-    }
-
-  //Criando uma comoanhia dentro do sistema
+    // Instanciando novos objetos
     if ( 1 ) {
       $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LTA");
-      $sistema->criaCompanhia($companhia1);
-      $sistema->save();
+      $companhia1->save();
+    }
+
+    if ( 1 ) {
+      $companhia2 = new Companhia("Azul", "AZ", "Azul L.A", "102345671234198", "AZU");
+      $companhia2->save();
     }
 
     // Carregando registros já persistidos da classe companhia
     if ( 1 ) {
-      $sistema = Sistema::getRecords();
-      print_r($sistema->getCompanhias());
+      $companhias = Companhia::getRecords();
+      //print_r($companhias);
     }
-  /*
     
-    // Adicionando uma aeronave
-    if ( 0 ) {
+    // Criando aeronaves
+    if ( 1 ) {
         
-        $companhia1->setAeronave("Embraer", "Super-tucano", "2", "500", "PP-GUO");
-        $companhia->save();
-        //print_r( $pOff );
+        $Aeronave1 = new Aeronave("Embraer", "Super-tucano", "2", "500", "PP-GUO");
+        $Aeronave1->save();
+        //print_r( $ );
     }
 
     // Carregando Aeronaves
-    if ( 0 ) {
-        $pontos = pontoOffline::getRecords();
-        print_r($pontos);
+    if ( 1 ) {
+        $aeronaves = Aeronave::getRecords();
+        print_r($aeronaves);
     }
 
+    /*
     // Criando um ponto online
     if ( 0 ) {
         $dataAgora = new DateTime("now");   
