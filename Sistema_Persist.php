@@ -1,59 +1,63 @@
 <?php
     require_once('global.php');
 
-    // Instanciando novos objetos
+    // Instanciando novas companhias
     if ( 1 ) {
-      $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LTA");
+      $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LT");
+      
+      //adicionando aeronaves
+      $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUA");
+      $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUB");
+
+      //criando voos
+      $companhia1->setVoo("50", "1330", "1420", "LT1234", "CNF", "RJS");
+      $companhia1->setVoo("240", "1600", "1730", "LT2234", "CNF", "FPA");
+      $companhia1->setVoo("90", "0830", "1000", "LT3234", "CNF", "CGH");
+      $companhia1->setVoo("60", "0830", "1000", "AD3234", "SVD", "CNF");
+
+      //apagando um voo
+      $voo = new Voo("60", "0830", "1000", "AD3234", "SVD", "CNF");
+      $companhia1->removeVoo($voo);
       $companhia1->save();
     }
 
     if ( 1 ) {
-      $companhia2 = new Companhia("Azul", "AZ", "Azul L.A", "102345671234198", "AZU");
+      $companhia2 = new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");
+      
+      //adicionando aeronaves
+      $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUC");
+      $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUD");
+      $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUE");
+      
+      //criando voos
+      $companhia2->setVoo("80", "1400", "1500", "AD1234", "SVD", "CGH");
+      $companhia2->setVoo("320", "1600", "1730", "AD2234", "SVD", "FPA");
+      $companhia2->setVoo("60", "0830", "1000", "AD3234", "SVD", "CNF");
+      
       $companhia2->save();
     }
 
     // Carregando registros já persistidos da classe companhia
     if ( 1 ) {
       $companhias = Companhia::getRecords();
-      //print_r($companhias);
+      print_r($companhias);
     }
-    
-    // Criando aeronaves
-    if ( 1 ) {
-        
-        $Aeronave1 = new Aeronave("Embraer", "Super-tucano", "2", "500", "PP-GUO");
-        $Aeronave1->save();
-        //print_r( $ );
-    }
-
-    // Carregando Aeronaves
-    if ( 1 ) {
-        $aeronaves = Aeronave::getRecords();
-        print_r($aeronaves);
-    }
-
     /*
-    // Criando um ponto online
-    if ( 0 ) {
-        $dataAgora = new DateTime("now");   
-        $pOn = new pontoOnline( $dataAgora );
-        $pOn->save();
-        //print_r($pOn);
+    print_r("---------------------------------------------------------");
+    echo ("\n");
+
+    // Removendo uma aeronave da companhia
+    if( 1 ) {
+      $aeronave = new Aeronave("Embraer", "E170", "80", "1000", "PP-GUE");
+      $companhia2->removeAeronave($aeronave);
+      $companhia2->save();
     }
 
-    // Carregando registros já persistidos da classe ponto online
-    if ( 0 ) {
-        $pontos = pontoOnline::getRecords();
-        print_r($pontos);
-    }
+    echo ("\n");
 
-    // Procurando pelo funcionário Bill Gates e adicionando pontos
-    if ( 0 ) {
-        $funcionarios = funcionario::getRecordsByField( 'nome', 'Bill Gates' );
-        //print_r($funcionarios);
-        $funcBill = $funcionarios[0];
-        $funcBill->addPonto($pOff);        
-        $funcBill->addPonto($pOn);
-        $funcBill->save();
+    // Carregando registros já persistidos da classe companhia
+    if ( 1 ) {
+      $companhias = Companhia::getRecords();
+      print_r($companhias);
     }
-  */
+    */

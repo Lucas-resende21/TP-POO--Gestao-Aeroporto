@@ -1,5 +1,5 @@
 <?php  
-  include_once("persist.php")
+  include_once("persist.php");
 
   class Aeronave extends persist{
     
@@ -9,6 +9,7 @@
     private $capPassageiros;
     private $capCarga;
     private $registro;
+    
     public function __construct(string $_fab, string $_mod, int $_capPassageiros,        float $_capCarga, string $_reg){
       if(strlen($_reg)>6){
         throw new Exception("Registro invalido");

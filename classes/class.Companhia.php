@@ -43,36 +43,43 @@
           if($this->_aeronaves[$i] == $aeronave)  {
             unset($this->_aeronaves[$i]);
             print_r("Removeu a Aeronave.");
-            echo ("</p>");
+            echo ("\n");
           }
       }
     }
+    
     public function getAeronaves(){
       print_r($this->_aeronaves);
-      echo("</p>");
+      echo ("\n");
     }
+    
     public function getAeronave(int $o){
       return($this->_aeronaves[$o]);
     }
+    
     public function setVoo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino){
-      $voo = new Voo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino);
+      $voo = new Voo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino);//recebe um voo, o voo é construido no calendario ou no sistema.
       $this->_voos[] = $voo;
     }
+    
     public function getVoo(int $o){
       return($this->_voos[$o]);
     }
+    
     public function getVoos(){
       print_r($this->_voos);
-      echo("</p>");
+      echo ("\n");
     }
+    
     public function removeVoo(Voo $_voo){
       for($i = 0; $i < sizeof($this->_voos); $i++) {
           if($this->_voos[$i] == $_voo) {
             unset($this->_voos[$i]);
             print_r("Removeu o Voo.");
-            echo ("</p>");
+            echo ("\n");
           }
       }
     }
+    
     public function __destruct(){}
   }

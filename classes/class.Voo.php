@@ -33,7 +33,7 @@
 
     public function getAssentos(){
       print_r($this->assentos);
-      echo("</p>");
+      echo ("\n");
     }
 
     public function setPassagem(int $_assento, int $_bagagens){
