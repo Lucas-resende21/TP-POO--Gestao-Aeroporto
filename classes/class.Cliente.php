@@ -1,4 +1,3 @@
-
 <?php
   include_once("persist.php");
   include_once("class.Passagem.php");
@@ -36,7 +35,7 @@
     */
     
     public function compraPassagem(Voo $_voo, int $_assento, int $_bagagens){
-        $this_passagens[] = $_voo->setPassagem($_assento, $_bagagens);
+        $this->passagens[] = $_voo->setPassagem($_assento, $_bagagens);
     }
     
     public function __desctruct(){}

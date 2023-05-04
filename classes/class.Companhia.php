@@ -18,7 +18,17 @@
 
     
     public function __construct(string $nome, string $cod, string $razsocial, int $CNPJ, string $sigla) {
-      
+      if(strlen($sigla)>2){
+        throw new Exception("Código invalido, maior");
+      }elseif(strlen($sigla)<2){
+        throw new Exception("Código invalido, menor");
+      }
+      for($ii=0;$ii<2;$ii++){
+        $teste3 = ord($sigla[$ii]);
+        if($teste3<65 || $teste3>90){
+          throw new Exception("Registro invalido");
+        }  
+      }
       $this->_nome = $nome;
       $this->_codigo = $cod;
       $this->_razsocial = $razsocial;
@@ -58,7 +68,26 @@
     }
     
     public function setVoo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino){
+
       $voo = new Voo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino);//recebe um voo, o voo é construido no calendario ou no sistema.
+
+      if(strlen($_codigoDeVoo)>6){
+        throw new Exception("Codigo de voo maior do que o permitido");
+      }elseif(strlen($_codigoDeVoo)<6){
+        throw new Exception("Codigo de voo menor do que o permitido");
+      }if($_codigoDeVoo[0]!=$this->_sigla[0]){
+        throw new Exception("Codigo não bate com a Sigla[0]");
+      }if($_codigoDeVoo[1]!=$this->_sigla[1]){
+        throw new Exception("Codigo não bate com a Sigla[1]");
+      }
+      $ii;
+      for($ii=0;$ii<6;$ii++){
+        $teste3 = ord($_codigoDeVoo[$ii]);
+        if($teste3<65 || $teste3>90){
+          throw new Exception("Codigo tem que ser letra maiuscula");
+        }  
+      }
+      $voo = new Voo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino);
       $this->_voos[] = $voo;
     }
     
