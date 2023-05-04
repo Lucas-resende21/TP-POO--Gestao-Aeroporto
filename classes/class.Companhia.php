@@ -18,7 +18,17 @@
 
     
     public function __construct(string $nome, string $cod, string $razsocial, int $CNPJ, string $sigla) {
-      
+      if(strlen($sigla)>2){
+        throw new Exception("Código invalido");
+      }elseif(strlen($sigla)<2){
+        throw new Exception("Código invalido");
+      }
+      for($ii=0;$ii<2;$ii++){
+        $teste3 = ord($sigla[$ii]);
+        if($teste3<65 || $teste3>90){
+          throw new Exception("Registro invalido");
+        }  
+      }
       $this->_nome = $nome;
       $this->_codigo = $cod;
       $this->_razsocial = $razsocial;
