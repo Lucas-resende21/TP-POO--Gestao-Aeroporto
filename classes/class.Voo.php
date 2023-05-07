@@ -10,7 +10,7 @@
     protected $horarioChegada;
     protected $codigoDeVoo;
     protected $origem;
-    protected $chegada;
+    protected $destino;
     protected $aeronave;
     protected $assentos = array();
     protected $passagens = array();
@@ -47,5 +47,14 @@
         return($passagem);
       }
     }
+
+    public function getOrigem(){
+      return $origem;
+    }
+
+    public function getDestino(){
+      return $destino;
+    }
+      
     public function __destruct() {}
   }
