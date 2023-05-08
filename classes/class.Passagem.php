@@ -7,7 +7,7 @@
   class Passagem extends persist{
     
     static $local_filename = "passagem.txt";  
-    private $preço;
+    private $preco;
     private $bagagens;
     private $assento;
     private $voosP = array();
@@ -15,8 +15,8 @@
     private $destino;
     private $distancia;
 
-    public function __construct(float $_preço, int $_bagagens, Aeroporto $_destino, int $_assento, $voos){
-      $this->preço = $_preço;
+    public function __construct(float $_preco, int $_bagagens, Aeroporto $_destino, int $_assento, $voos){
+      $this->preco = $_preco;
       $this->bagagens = $_bagagens;
       $this->destino = $_destino;
       // E depois uma segunda function pra verificar se os assentos escolhidos estao disponiveis
@@ -41,16 +41,14 @@
         }
       }
 
-    public function calculaPreco(Passageiro $p, $preco, $bagagens,   
-    $distancia)
+    public function calculaPreco(Passageiro $p, $preco, $bagagens, $distancia)
     {
       if($p->validaVIP())
       {
-        $preco = (($bagagens-1)*(50*0,5)) + ($distancia*0,02);
+        $preco = (($bagagens-1)*(50*0.5)) + ($distancia*0.02);
       }
-      else
-      {
-        $preco = (($bagagens)*(50) + ($distancia*0,02);
+      else{
+        $preco = ($bagagens)*(50) + ($distancia*0.02);
       }
     }
 

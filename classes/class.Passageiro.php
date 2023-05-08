@@ -110,7 +110,7 @@ class Passageiro extends persist{
       return false;
     }
   
-    public function check-in(Voo $v)
+    public function check_in(Voo $v)
     {
       if($v->getHorarioPartida - 30)
       {
@@ -126,7 +126,7 @@ class Passageiro extends persist{
     {
       if($embarque)
       {
-        $status = "Embarque realizado"
+        $status = "Embarque realizado";
       }
       else
       {
