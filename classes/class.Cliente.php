@@ -34,8 +34,25 @@
     }
     */
     
-    public function compraPassagem(Voo $_voo, int $_assento, int $_bagagens){
-        $this->passagens[] = $_voo->setPassagem($_assento, $_bagagens);
+    public function compraPassagem(Voo $_voo, int $_assento, int   
+    $_bagagens)
+    {
+      $this->passagens[] = $_voo->setPassagem($_assento, $_bagagens);
+    }
+
+    
+
+    public function calculaPreco(Passageiro $p)
+    {
+      if($p->validaVIP())
+      {
+        
+      }
+
+      else
+      {
+        
+      }
     }
     
     public function __desctruct(){}
