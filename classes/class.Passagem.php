@@ -2,6 +2,7 @@
   include_once("persist.php");
   include_once("class.Aeroporto.php");
   include_once("class.Viagem.php");
+  include_once("class.Passageiro.php");
   //include_once()
   class Passagem extends persist{
     
@@ -12,6 +13,7 @@
     private $voosP = array();
     private $origem;
     private $destino;
+    private $distancia;
 
     public function __construct(float $_preço, int $_bagagens, Aeroporto $_destino, int $_assento, $voos){
       $this->preço = $_preço;
@@ -38,11 +40,32 @@
           }
         }
       }
+
+    public function calculaPreco(Passageiro $p, $preco, $bagagens,   
+    $distancia)
+    {
+      if($p->validaVIP())
+      {
+        $preco = (($bagagens-1)*(50*0,5)) + ($distancia*0,02);
+      }
+      else
+      {
+        $preco = (($bagagens)*(50) + ($distancia*0,02);
+      }
     }
 
-    static public function getFilename() {
-        return get_called_class()::$local_filename;
+    public function getPreco($preco)
+    {
+      return $preco;
+    }
+
+    static public function getFilename() 
+    {
+      return get_called_class()::$local_filename;
     }
 
     public function __destruct(){ }
   }
+
+    
+  

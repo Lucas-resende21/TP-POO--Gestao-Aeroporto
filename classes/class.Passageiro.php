@@ -1,7 +1,8 @@
 <?php
   include_once("persist.php");
-  include_once("class.cliente.php");
-  include_once("class.passagem.php");
+  include_once("class.Cliente.php");
+  include_once("class.Passagem.php");
+  include_once("class.Voo.php");
 
 class Passageiro extends persist{
     static $local_filename = "passageiro.txt";
@@ -16,6 +17,7 @@ class Passageiro extends persist{
     private $dataDeNascimento;
     private $email;
     private $status;
+    private $embarque;
     private Passagem $passagem;
     private $histDeVoos = array();
 
@@ -73,7 +75,7 @@ class Passageiro extends persist{
   
     public function validaDocumento()
     {
-      
+      //Não padronizado.
     }  
     
     public function validaEmail()
@@ -108,16 +110,29 @@ class Passageiro extends persist{
       return false;
     }
   
-    public function check-in()
+    public function check-in(Voo $v)
     {
-      
+      if($v->getHorarioPartida - 30)
+      {
+        $status = "Check-in";
+      }
+      else
+      {
+        $status = "NO SHOW";
+      }
     }
 
-    public function confirmaEmbarque()
+    public function confirmaEmbarque($embarque)
     {
-      
+      if($embarque)
+      {
+        $status = "Embarque realizado"
+      }
+      else
+      {
+        $status = "NO SHOW";
+      }
     }
-  
 }
   
   

@@ -10,6 +10,7 @@
     private $nome;
     private $sobenome;
     private $documento;
+    private $compraTotal;
     private $passagens = array();
 
     public function __construct(string $_nome, string $_sobrenome, string $_documento){
@@ -40,19 +41,13 @@
       $this->passagens[] = $_voo->setPassagem($_assento, $_bagagens);
     }
 
-    
-
-    public function calculaPreco(Passageiro $p)
+    public function totalPassagens($compraTotal)
     {
-      if($p->validaVIP())
+      for($i=0; $i<sizeof($passagens); $i++)
       {
-        
+        $compraTotal += $passagens[$i]->getPreco();  
       }
-
-      else
-      {
-        
-      }
+      return $compraTotal;
     }
     
     public function __desctruct(){}
