@@ -10,7 +10,8 @@
     private $capCarga;
     private $registro;
     
-    public function __construct(string $_fab, string $_mod, int $_capPassageiros,        float $_capCarga, string $_reg){
+    public function __construct(string $_fab, string $_mod, int $_capPassageiros, float $_capCarga, string $_reg){
+      
       if(strlen($_reg)>6){
         throw new Exception("Registro invalido");
       }elseif(strlen($_reg)<6){
@@ -23,6 +24,7 @@
       if($_reg[1]!='T'&&$_reg[1]!='R'&&$_reg[1]!='S'&&$_reg[1]!='P'){
         throw new Exception("Registro invalido");
       }
+      
       $ii;
       for($ii=0;$ii<3;$ii++){
         $teste3 = ord($_reg[3+$ii]);
@@ -35,6 +37,10 @@
       $this->capPassageiros = $_capPassageiros;
       $this->capCarga = $_capCarga;
       $this->registro = $_reg;
+    }
+
+    public function getAssentos(){
+      return $this->capPassageiros - 4;
     }
 
     static public function getFilename() {

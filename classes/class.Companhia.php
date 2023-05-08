@@ -36,9 +36,7 @@
       $this->_sigla = $sigla;
     }
 
-    static public function getFilename() {
-      return get_called_class()::$local_filename;
-    }
+    
 
     public function adicionaAeronave(string $fab, string $mod, int $capPsg, float $capCarg, string $reg) {
 
@@ -67,27 +65,7 @@
       return($this->_aeronaves[$o]);
     }
     
-    public function setVoo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino){
-
-      $voo = new Voo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino);//recebe um voo, o voo é construido no calendario ou no sistema.
-
-      if(strlen($_codigoDeVoo)>6){
-        throw new Exception("Codigo de voo maior do que o permitido");
-      }elseif(strlen($_codigoDeVoo)<6){
-        throw new Exception("Codigo de voo menor do que o permitido");
-      }if($_codigoDeVoo[0]!=$this->_sigla[0]){
-        throw new Exception("Codigo não bate com a Sigla[0]");
-      }if($_codigoDeVoo[1]!=$this->_sigla[1]){
-        throw new Exception("Codigo não bate com a Sigla[1]");
-      }
-      $ii;
-      for($ii=0;$ii<6;$ii++){
-        $teste3 = ord($_codigoDeVoo[$ii]);
-        if($teste3<65 || $teste3>90){
-          throw new Exception("Codigo tem que ser letra maiuscula");
-        }  
-      }
-      $voo = new Voo($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino);
+    public function setVoo($voo){
       $this->_voos[] = $voo;
     }
     
@@ -108,6 +86,14 @@
             echo ("\n");
           }
       }
+    }
+
+    public function getSigla(){
+      return _sigla;
+    }
+    
+    static public function getFilename() {
+      return get_called_class()::$local_filename;
     }
     
     public function __destruct(){}
