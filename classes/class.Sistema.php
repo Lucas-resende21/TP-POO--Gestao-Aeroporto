@@ -13,11 +13,20 @@
     private $aeroportos = array();
     private $clientes = array();
     private $passagens = array();
-    private $calendario = array(); //talvez seja um array
+    private $calendario = array(); 
 
     public function criaCalendário($_1stdia, $_numdias){
-        //Preenche o array calendario cm o numdias dado e dps preenche as viagens.,
-      
+        for($i = 1; $i =< $_numdias; $i++){
+          $this->calendario[$i] = new Dia($_1stdia);
+        }
+    }
+
+    public function AddVooCalendario($_voo){
+      for($i = 1; $i=< 30; $i++){
+        if($_voo.getFrequencia() == $this->calendario[$i].getSem()){
+            $this->calendario[$i].setViagem($_voo);
+        }
+      }
     }
 
     public function criaCompanhia(Companhia $_companhia){

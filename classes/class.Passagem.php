@@ -14,8 +14,10 @@
     private $origem;
     private $destino;
     private $distancia;
+    private $Passageiro;
 
-    public function __construct(float $_preco, int $_bagagens, Aeroporto $_destino, int $_assento, $voos){
+    public function __construct(float $_preco, int $_bagagens, Aeroporto $_destino, int $_assento, $voos, Passageiro $_Passageiro){
+      $this->Passageiro = $_Passageiro;
       $this->preco = $_preco;
       $this->bagagens = $_bagagens;
       $this->destino = $_destino;

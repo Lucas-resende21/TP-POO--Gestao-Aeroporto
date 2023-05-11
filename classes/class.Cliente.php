@@ -8,7 +8,7 @@
       return get_called_class()::$local_filename;
     }
     private $nome;
-    private $sobenome;
+    private $sobrenome;
     private $documento;
     private $compraTotal;
     private $passagens = array();
@@ -35,8 +35,7 @@
     }
     */
     
-    public function compraPassagem(Voo $_voo, int $_assento, int   
-    $_bagagens)
+    public function compraPassagem(Voo $_voo, int $_assento, int $_bagagens, Passageiro $_viajante)
     {
       $this->passagens[] = $_voo->setPassagem($_assento, $_bagagens);
     }

@@ -1,4 +1,6 @@
 <?php
+  include_once("class.Voo.php");
+  include_once("class.Viagem.php");
   class Dia{
     private $DiaDaSemana;
     private $viagens = array();
@@ -7,8 +9,12 @@
       $this->DiaDaSemana = $_DiaDaSemana;
     }
 
-    public function setViagem($_viagem){
-      $this->viagens[] = $_viagem;
+    public function setViagem($_Voo){
+      $this->viagens[] = $_Voo;
+    }
+
+    public function getSem(){
+      return($this->DiaDaSemana);
     }
         
   }
