@@ -4,6 +4,7 @@
   //include_once("class.Calendario.php");
   include_once("class.Aeroporto.php");
   include_once("class.Cliente.php");
+  include_once("class.Dia.php");
 
   class Sistema extends persist{
 
@@ -12,7 +13,12 @@
     private $aeroportos = array();
     private $clientes = array();
     private $passagens = array();
-    private $calendario; //talvez seja um array
+    private $calendario = array(); //talvez seja um array
+
+    public function criaCalendário($_1stdia, $_numdias){
+        //Preenche o array calendario cm o numdias dado e dps preenche as viagens.,
+      
+    }
 
     public function criaCompanhia(Companhia $_companhia){
       $companhias[] = $_companhia;
