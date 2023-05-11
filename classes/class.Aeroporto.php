@@ -1,4 +1,5 @@
 <?php
+
 class Aeroporto{
     protected $sigla;
     protected $cidade;
@@ -15,5 +16,18 @@ class Aeroporto{
       $this->cidade = $_cidade;
       $this->estado = $_estado;
     }
+
+    public function getSigla(){
+      return $this->sigla;
+    }
+
+    public function getCidade(){
+      return $this->cidade;
+    }
+
+    public function getEstado(){
+      return $this->estado;
+    }
+  
     public function __destruct(){}
   }

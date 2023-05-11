@@ -53,7 +53,7 @@
     }
 
     public function criaAeroporto(Aeroporto $_aeroporto){
-      $aeroportos->push($_aeroporto);
+      $aeroportos[] = $_aeroporto;
     }
 
     public function removeAeroporto(Aeroporto $_aeroporto){
