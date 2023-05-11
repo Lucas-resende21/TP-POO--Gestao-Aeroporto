@@ -89,7 +89,7 @@
     }
 
     public function getSigla(){
-      return _sigla;
+      return $this->_sigla;
     }
     
     static public function getFilename() {

@@ -17,26 +17,28 @@
     protected $freqHora;
     protected $freqDiaSem;
 
-    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino)
+    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla)
     {  
-      /*
+      
       if(strlen($_codigoDeVoo)>6){
         throw new Exception("Codigo de voo maior do que o permitido");
       }elseif(strlen($_codigoDeVoo)<6){
         throw new Exception("Codigo de voo menor do que o permitido");
-      }if($_codigoDeVoo[0] != $this->_sigla[0]){
+      }if($_codigoDeVoo[0] != $_sigla[0]){
         throw new Exception("Codigo não bate com a Sigla[0]");
-      }if($_codigoDeVoo[1] != $this->_sigla[1]){
+      }if($_codigoDeVoo[1] != $_sigla[1]){
         throw new Exception("Codigo não bate com a Sigla[1]");
       }
+      
       $ii;
-      for($ii=0;$ii<6;$ii++){
+      for($ii=0;$ii<2;$ii++){
         $teste3 = ord($_codigoDeVoo[$ii]);
         if($teste3<65 || $teste3>90){
           throw new Exception("Codigo tem que ser letra maiuscula");
         }  
       }
-      *///precisa de mudar essa validação
+      //precisa de mudar essa validação
+      
       $this->duracao = $_duracao;
       $this->horarioPartida = $_horarioPartida;
       $this->horarioChegada = $_horarioChegada;
