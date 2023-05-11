@@ -88,8 +88,26 @@ class Passageiro extends persist{
         throw new Exception("email inválido");
       }
     }
+
+    public function validaDataDeNascimento() //em construção
+  {
+    if ($dataDeNasimento < $hoje) //implementar "hoje"
+    {
+      echo ("Data Inválida");
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
   
-    public function cancelaPassagem(Passagem $p)
+
+  //associar passageiro a uma passagem
+
+  //Deve ser possível acessar o histórico de vôos de um passageiro em ordem cronológica.
+  
+    public function cancelaPassagem(Passagem $p) //implementar custo de cancelamento caso passageiro comum
     {
       for($i=0; i<sizeof($this->_passagens); $i++)
       {
@@ -102,13 +120,14 @@ class Passageiro extends persist{
         }       
       }
     }
+  //implementar alteração de passagem, sem custo para vip com custo para VIP
 
     public function validaVIP()
     {
       return false;
     }
   
-    public function check_in(Voo $v)
+    public function check_in(Voo $v) //implementar só poder fazer check-in faltando 48h pro voo até 30 min antes, caso não faça no prazo NO SHOW
     {
       if($v->getHorarioPartida - 30)
       {
@@ -120,7 +139,7 @@ class Passageiro extends persist{
       }
     }
 
-    public function confirmaEmbarque($embarque)
+    public function confirmaEmbarque($embarque) //verificar
     {
       if($embarque)
       {
@@ -136,4 +155,13 @@ class Passageiro extends persist{
 }
   
   
+/*
 
+• Todos os status do passageiro em um vôo deve ser passível de registro. São eles:
+o Passagem adquirida --> FALTA
+o Passagem cancelada --> FALTA
+o Check-in realizado --OK
+o Embarque realizado --> OK
+o NO SHOW --> OK
+
+  */
