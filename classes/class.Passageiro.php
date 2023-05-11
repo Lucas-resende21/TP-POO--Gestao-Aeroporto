@@ -1,5 +1,5 @@
 <?php
-  include_once("persist.php");
+  include_once("class.pessoa.php");
   include_once("class.Cliente.php");
   include_once("class.Passagem.php");
   include_once("class.Voo.php");
@@ -10,8 +10,6 @@ class Passageiro extends persist{
       return get_called_class()::$local_filename;
     }
 
-    private $nome;
-    private $documento; 
     private $CPF;
     private $nacionalidade;
     private $dataDeNascimento;
@@ -132,7 +130,9 @@ class Passageiro extends persist{
       {
         $status = "NO SHOW";
       }
+      $histDeVoos[] = $passagem;
     }
+
 }
   
   
