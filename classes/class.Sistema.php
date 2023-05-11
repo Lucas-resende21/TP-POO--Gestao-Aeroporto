@@ -16,8 +16,13 @@
     private $calendario = array(); 
 
     public function criaCalendário($_1stdia, $_numdias){
+    $rotate = $_1stdia;
         for($i = 1; $i =< $_numdias; $i++){
-          $this->calendario[$i] = new Dia($_1stdia);
+          if($rotate = 7){
+            $rotate = 0;
+          }
+          $this->calendario[$i] = new Dia($_rotate);
+          $rotate++;
         }
     }
 
@@ -100,9 +105,5 @@
 
     static public function getFilename() {
       return get_called_class()::$local_filename;
-    }
-
-    public function calendario(){
-      
     }
   }
