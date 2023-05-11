@@ -1,5 +1,5 @@
 <?php
-  include_once("claa.Pessoa.php");
+  include_once("class.Pessoa.php");
 
 class Funcionario extends persist{
     static $local_filename = "funcionario.txt";
