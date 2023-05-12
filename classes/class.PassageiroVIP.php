@@ -2,12 +2,12 @@
   include_once("persist.php");
   include_once("class.cliente.php");
 
-  class Passageiro extends Passageiro
+  class PassageiroVIP extends Passageiro
   {
     static $local_filename = "passageiroVIP.txt";
     static public function getFilename() {
       return get_called_class()::$local_filename;
-    }
+  }
 
     public function cancelaPassagem()
     {
@@ -19,7 +19,9 @@
             print_r("Passagem cancelada.");
             echo ("</p>");
           break;
-        }       
+
+          return 0;
+        }
       }
     }
 

@@ -4,11 +4,12 @@
   include_once("class.Passagem.php");
   include_once("class.Voo.php");
 
-class Passageiro extends persist{
+  class Passageiro extends persist
+  {
     static $local_filename = "passageiro.txt";
     static public function getFilename() {
       return get_called_class()::$local_filename;
-    }
+  }
 
     private $CPF;
     private $nacionalidade;
@@ -102,7 +103,7 @@ class Passageiro extends persist{
     }
   }
   
-
+  
   //associar passageiro a uma passagem
 
   //Deve ser possível acessar o histórico de vôos de um passageiro em ordem cronológica.
@@ -117,6 +118,8 @@ class Passageiro extends persist{
             print_r("Passagem cancelada.");
             echo ("</p>");
           break;
+
+          return 200;
         }       
       }
     }

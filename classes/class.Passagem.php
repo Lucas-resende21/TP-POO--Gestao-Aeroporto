@@ -43,16 +43,27 @@
         }
       }
 
-    public function calculaPreco(Passageiro $p, $preco, $bagagens, $distancia)
+    public function calculaPreco(Passageiro $p, $preco, $bagagens,     
+    $distancia)
     {
       if($p->validaVIP())
       {
         $preco = (($bagagens-1)*(50*0.5)) + ($distancia*0.02);
+        if($p->cancelaPassagem())
+        {
+          $preco == 0;
+        }
       }
-      else{
+      else
+      {
         $preco = ($bagagens)*(50) + ($distancia*0.02);
+        if($p->cancelaPassagem())
+        {
+          $preco == cancelaPassagem();
+        }
       }
     }
+      
 
     public function getPreco($preco)
     {
