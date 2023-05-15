@@ -9,6 +9,11 @@
       return get_called_class()::$local_filename;
   }
 
+    private $numRegistro;
+    private $programaDeMilhagem;
+    private $categoria;
+    private $pontos;
+
     public function cancelaPassagem()
     {
       for($i=0; i<sizeof($this->_passagens); $i++)
@@ -23,6 +28,26 @@
           return 0;
         }
       }
+    }
+
+    public function getNumRegistro()
+    {
+      return $numRegistro;
+    }
+    
+    public function getProgramaDeMilhagem()
+    {
+      return $programaDeMilhagem;
+    }
+    
+    public function getCategoria()
+    {
+      return $categoria;
+    }
+    
+    public function getPontos()
+    {
+      return $pontos;
     }
 
     public function validaVIP()
