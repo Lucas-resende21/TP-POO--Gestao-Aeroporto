@@ -8,11 +8,13 @@
   class Sistema extends persist{
 
     static $local_filename = "sistema.txt";
-    private $companhias = array();
     private $aeroportos = array();
+    private $calendario = array();
     private $clientes = array();
+    private $passageiros = array();
+    private $funcionarios = array();
     private $passagens = array();
-    private $calendario = array(); 
+    private $companhias = array();
 
     public function criaCalendário($_1stdia, $_numdias){
     $rotate = $_1stdia;
@@ -20,21 +22,21 @@
           if($rotate = 7){
             $rotate = 0;
           }
-          $this->calendario[$i] = new Dia($_rotate);
+          $this->calendario[$i] = new Dia($rotate);
           $rotate++;
         }
     }
 
     public function AddVooCalendario($_voo){
       for($i = 1; $i <= 30; $i++){
-        if($_voo.getFrequencia() == $this->calendario[$i].getSem()){
-            $this->calendario[$i].setViagem($_voo);
+        if($_voo->getFrequencia() == $this->calendario[$i]->getSem()){
+            $this->calendario[$i]->setViagem($_voo);
         }
       }
     }
 
     public function criaCompanhia(Companhia $_companhia){
-      $companhias[] = $_companhia;
+      $this->companhias[] = $_companhia;
     }
 
     public function removeCompanhia(Companhia $_companhia){
@@ -46,11 +48,11 @@
     }
 
     public function printCompanhias(){
-      var_dump($this->companhias); 
+      print_r($this->companhias); 
     }
 
     public function criaAeroporto(Aeroporto $_aeroporto){
-      $aeroportos[] = $_aeroporto;
+      $this->aeroportos[] = $_aeroporto;
     }
 
     public function removeAeroporto(Aeroporto $_aeroporto){
@@ -63,11 +65,10 @@
     
     public function getAeroportos(){
       print_r($this->$aeroportos);
-      echo("</p>");
     }
     
     public function criaCliente(Cliente $_cliente){
-      $clientes[] = $_cliente;
+      $this->clientes[] = $_cliente;
     }
 
     public function removeCliente(Cliente $_cliente){
@@ -78,13 +79,24 @@
       }
     }
 
+    public function criaPassageiro(Passageiro $_passageiro){
+      $this->passageiros[] = $_passageiro;
+    }
+
+    public function removePassageiro(Passageiro $_passageiro){
+      for($i = 0; $i < $passageiros->count(); $i++){
+        if($this->passageiros[$i] == $_passageiro){
+          unset($this->passageiros[$i]);
+        }
+      }
+    }
+    
     public function getClientes(){
       print_r($this->clientes);
-      echo("</p>");
     }
 
     public function criaPassagem(Passagem $_passagem){
-      $passagens->push($_passagem);
+      $this->passagens[] = $_passagem;
     }
 
     public function removePassagem(Passagem $_passagem){
@@ -97,7 +109,6 @@
 
     public function getPassagens(){
       print_r($this->passagens);
-      echo("</p>");
     }
 
     static public function getFilename() {

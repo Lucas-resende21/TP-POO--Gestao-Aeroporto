@@ -1,21 +1,20 @@
 <?php
-  include_once("persist.php");
+  //include_once("persist.php");
   include_once("class.Passagem.php");
+  include_once("class.Pessoa.php");
   
-  class Cliente extends persist{
+  class Cliente extends Pessoa{
     static $local_filename = "cliente.txt";
     static public function getFilename() {
       return get_called_class()::$local_filename;
     }
-    private $nome;
-    private $sobrenome;
-    private $documento;
+    //private $nome;
+    //private $documento;
     private $compraTotal;
     private $passagens = array();
 
-    public function __construct(string $_nome, string $_sobrenome, string $_documento){
+    public function __construct(string $_nome, string $_documento){
       $this->nome = $_nome;
-      $this->sobrenome = $_sobrenome;
       $this->documento = $_documento;
     }
 
@@ -37,7 +36,11 @@
     
     public function compraPassagem(Voo $_voo, int $_assento, int $_bagagens, Passageiro $_viajante)
     {
-      $this->passagens[] = $_voo->setPassagem($_assento, $_bagagens);
+      $this->passagens[] = $_voo->setPassagem($_bagagens, $_assento, $_voo->getOrigem(), 
+                                              $_voo->getDestino(), $_voo->getDistancia());
+      
+      $_viajante->atribuiPassagem($_voo->setPassagem($_bagagens, $_assento, $_voo->getOrigem(), 
+                                                     $_voo->getDestino(), $_voo->getDistancia()));
     }
 
     public function totalPassagens($compraTotal)

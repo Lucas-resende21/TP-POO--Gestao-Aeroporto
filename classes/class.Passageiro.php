@@ -20,8 +20,8 @@
     private Passagem $passagem;
     private $histDeVoos = array();
 
-    public function construct($_nome, $_documento, $_CPF,       
-    $_nacionalidade, $_dataDeNascimento, $_email, $_status)
+    public function __construct($_nome, $_documento, $_CPF,       
+    $_nacionalidade, $_dataDeNascimento, $_email)
     {
       $this->nome = $_nome;
       $this->documento = $_documento;
@@ -29,7 +29,7 @@
       $this->nacionalidade = $_nacionalidade;
       $this->dataDeNascimento = $_dataDeNascimento;
       $this->email = $_email;
-      $this->status = $_status;
+      //$this->status = $_status;
     }
 
     public function validaCPF()
@@ -155,8 +155,11 @@
       $histDeVoos[] = $passagem;
     }
 
+    public function atribuiPassagem($_passagem){
+      $this->passagem = $_passagem;
+    }
 }
-  
+
   
 /*
 

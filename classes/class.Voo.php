@@ -15,6 +15,7 @@
     protected $assentos = array();
     protected $passagens = array();
     protected $freqSem;
+    protected $distancia = 100000;
 
 
     public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem)
@@ -56,29 +57,40 @@
       }
     }
 
-    public function setPassagem(int $_assento, int $_bagagens){
-      if($_assento>$this->aeronave->getCapacidade()){
+    public function setPassagem($_bagagens, $_assento, $_origem, $_destino, $_distancia){
+      if($_assento > $this->aeronave->getAssentos()){
         throw new Exception("Assento invalido");
-      }elseif($this->assentos[$_assento] == 1){
+      }elseif($_assento < 0){
         throw new Exception("Assento invalido");
+      }elseif($this->assentos[$_assento] != 0){
+        print_r($this->assentos[$_assento]);
+        //throw new Exception("Assento ocupado");
       }else{
-         $this->assentos[$_assento] = 1;
-          $passagem = new Passagem($_assento,$_bagagens);
+        $this->assentos[$_assento] = 1;
+        $passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
         return($passagem);
       }
     }
 
     public function getOrigem(){
-      return $origem;
+      return $this->origem;
     }
 
     public function getDestino(){
-      return $destino;
+      return $this->destino;
     }
       
     public function getCodigo(){
-      return $codigoDeVoo;
-    }  
+      return $this->codigoDeVoo;
+    } 
+
+    public function getFrequencia(){
+      return $this->freqSem;
+    }
+
+    public function getDistancia(){
+      return $this->distancia;
+    }
     
     static public function getFilename() {
       return get_called_class()::$local_filename;
