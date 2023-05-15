@@ -67,7 +67,7 @@
 
     public function getPreco($preco)
     {
-      return $preco;
+      return $this->preco;
     }
 
     static public function getFilename() 

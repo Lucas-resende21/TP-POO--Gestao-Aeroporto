@@ -4,7 +4,7 @@
   include_once("class.Passagem.php");
   include_once("class.Voo.php");
 
-  class Passageiro extends persist
+  class Passageiro extends Pessoa
   {
     static $local_filename = "passageiro.txt";
     static public function getFilename() {

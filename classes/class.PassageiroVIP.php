@@ -32,22 +32,22 @@
 
     public function getNumRegistro()
     {
-      return $numRegistro;
+      return $this->numRegistro;
     }
     
     public function getProgramaDeMilhagem()
     {
-      return $programaDeMilhagem;
+      return $this->programaDeMilhagem;
     }
     
     public function getCategoria()
     {
-      return $categoria;
+      return $this->categoria;
     }
     
     public function getPontos()
     {
-      return $pontos;
+      return $this->pontos;
     }
 
     public function validaVIP()

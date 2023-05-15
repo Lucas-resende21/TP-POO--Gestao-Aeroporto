@@ -1,7 +1,7 @@
 <?php
   include_once("class.Pessoa.php");
 
-class Funcionario extends persist{
+class Funcionario extends Pessoa{
     static $local_filename = "funcionario.txt";
     static public function getFilename() {
     return get_called_class()::$local_filename;
@@ -13,3 +13,6 @@ class Funcionario extends persist{
     private $email;
     private $CHT;
     private $endereco;
+    private $companhiaAerea;
+    private $aeroportoBase;
+}
