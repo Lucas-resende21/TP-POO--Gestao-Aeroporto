@@ -1,7 +1,6 @@
 <?php
   include_once("persist.php");
   include_once("class.Companhia.php");
-  //include_once("class.Calendario.php");
   include_once("class.Aeroporto.php");
   include_once("class.Cliente.php");
   include_once("class.Dia.php");
@@ -17,7 +16,7 @@
 
     public function criaCalendário($_1stdia, $_numdias){
     $rotate = $_1stdia;
-        for($i = 1; $i =< $_numdias; $i++){
+        for($i = 1; $i <= $_numdias; $i++){
           if($rotate = 7){
             $rotate = 0;
           }
@@ -27,7 +26,7 @@
     }
 
     public function AddVooCalendario($_voo){
-      for($i = 1; $i=< 30; $i++){
+      for($i = 1; $i <= 30; $i++){
         if($_voo.getFrequencia() == $this->calendario[$i].getSem()){
             $this->calendario[$i].setViagem($_voo);
         }
@@ -46,10 +45,8 @@
       }
     }
 
-    public function getCompanhias(){
-      return $this->companhias;
-      //var_dump($this->companhias); 
-      //echo("</p>");
+    public function printCompanhias(){
+      var_dump($this->companhias); 
     }
 
     public function criaAeroporto(Aeroporto $_aeroporto){
@@ -70,7 +67,7 @@
     }
     
     public function criaCliente(Cliente $_cliente){
-      $clientes->push($_cliente);
+      $clientes[] = $_cliente;
     }
 
     public function removeCliente(Cliente $_cliente){

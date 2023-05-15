@@ -1,5 +1,5 @@
 <?php
-  include_once("class.pessoa.php");
+  include_once("class.Pessoa.php");
   include_once("class.Cliente.php");
   include_once("class.Passagem.php");
   include_once("class.Voo.php");

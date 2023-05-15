@@ -25,10 +25,10 @@
         $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUE");
 
       // criando voos e atrbuindo as aeronaves aos voos
-        $voo1 = new Voo("50", "1330", "1420", "LT1234", "CNF", "RJS", $companhia1->getSigla());
+        $voo1 = new Voo("50", "1330", "1420", "LT1234", "CNF", "RJS", $companhia1->getSigla(), "1");
         //$voo2 = new Voo("240", "1600", "1730", "LT2234", "CNF", "FPA");
         //$voo3 = new Voo("90", "0830", "1000", "LT3234", "CNF", "CGH");
-        $voo4 = new Voo("60", "0830", "1000", "LT3234", "SVD", "CNF", $companhia1->getSigla());
+        $voo4 = new Voo("60", "0830", "1000", "LT3234", "SVD", "CNF", $companhia1->getSigla(), "2");
   
         $voo1->setAeronave($companhia1->getAeronave(0));
         //$voo2->setAeronave($companhia1->getAeronave(1));
@@ -40,7 +40,7 @@
         //$companhia1->setVoo($voo4);
 
       // apagando um voo
-        $voo = new Voo("60", "0830", "1000", "LT3234", "SVD", "CNF", $companhia1->getSigla());
+        $voo = new Voo("60", "0830", "1000", "LT3234", "SVD", "CNF", $companhia1->getSigla(), "2");
         $companhia1->removeVoo($voo);
         //$companhia1->save();
 
@@ -74,7 +74,8 @@
         //$sistema->criaCompanhia($companhia2);
 
       // salvando os dados do sistema
-        $sistema->save();
+      // $sistema->save();
+      $sistema->printCompanhias();
     }
 
     /*
@@ -161,9 +162,10 @@
 
     
     // Carregando registros já persistidos na classe Sistema
+    /*
     if ( 1 ){
       $sistemas = Sistema::getRecords();
-      print_r($sistemas);
+      $sistemas->printCompanhias();
     }
-
+    */
     
