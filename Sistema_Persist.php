@@ -2,7 +2,7 @@
     require_once('global.php');
 
     // Criando o Sistema
-    if( 1 ){
+    if( 0 ){
       $sistema = new Sistema();
 
       // criando calendário - mês 1
@@ -98,9 +98,24 @@
 
 
     // Carregando registros já persistidos na classe Sistema
-    if ( 1 ){
+    if ( 0 ){
       $sistemas = Sistema::getRecords();
       print_r($sistemas);
     }
-      
+
+    if(1){ //Testes - Lucas -----------------------------------------------------------------
+      //Sprint 1 -
+      echo("Opa, tá funcionando");
+      $Azul= new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");
+      $SuperTucano = new Aeronave("Embraer", "E170", "80", "1000", "PT-GUE");
+      //$TestePrefixo = new Aeronave("Embraer", "E170", "80", "1000", "Pc-GUE"); 
+      $Azul->AdicionaAeronave("Ferrari", "E171", "81", "1001", "PP-GUE");
+      print_r($Azul);
+      $confins = new Aeroporto("CNF", "Confins", "MG");
+      $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ");
+      //Voos
+      $SPBH = new Voo("60", "0830", "1000", "LT3234", $confins, $rio, "LT", 1, 200);
+          /*public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa)*/
+    }
+  
       
