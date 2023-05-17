@@ -115,7 +115,7 @@
       $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ");
       //Voos
       $SPBH = new Voo("60", "0830", "1000", "LT3234", $confins, $rio, "LT", 1, 200);
-          /*public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa)*/
+
     }
   
       

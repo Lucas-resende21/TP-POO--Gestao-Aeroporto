@@ -73,6 +73,9 @@
       }
     }
 
+    public function getHorarioP(){
+      return $this->horarioPartida;
+    }
     public function getOrigem(){
       return $this->origem;
     }

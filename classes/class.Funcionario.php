@@ -15,4 +15,8 @@ class Funcionario extends Pessoa{
     private $endereco;
     private $companhiaAerea;
     private $aeroportoBase;
+
+    public function getEndereço(){
+      return($this->endereco);
+    }
 }
