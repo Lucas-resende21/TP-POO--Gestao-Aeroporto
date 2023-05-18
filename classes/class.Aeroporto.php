@@ -21,7 +21,7 @@ class Aeroporto{
     }
 
     public function getEndereço(){
-      return($this->endereço[0],$this->endereço[1]);
+      return $this->endereço;
     }
   
     public function getSigla(){

@@ -1,7 +1,7 @@
  <?php
 /*alterado 17/05 para colocar CPF, nacionalidade, data de nascimento e email*/
 include_once("persist.php");
-use Exception;
+//use Exception;
 
 class Pessoa extends persist {
   static $local_filename = "pessoa.txt";

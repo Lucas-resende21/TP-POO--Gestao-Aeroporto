@@ -2,16 +2,16 @@
     require_once('global.php');
 
     // Criando o Sistema
-    if( 0 ){
+    if( 1 ){
       $sistema = new Sistema();
 
       // criando calendário - mês 1
         //$sistema->criaCalendário("1", "30");
       
       // criando aeropostos
-        $confins = new Aeroporto("CNF", "Confins", "MG");
-        $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ");
-        $floripa = new Aeroporto("FLN", "Florianópolis", "SC");
+        $confins = new Aeroporto("CNF", "Confins", "MG", "289466", "2102024");
+        $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ", "35667", "32585");
+        $floripa = new Aeroporto("FLN", "Florianópolis", "SC", "12315", "87654");
   
         $sistema->criaAeroporto($confins);
         $sistema->criaAeroporto($rio);
@@ -79,9 +79,9 @@
         $sistema->criaCompanhia($companhia1);
         //$sistema->criaCompanhia($companhia2);
 
-
+string $_nome, string $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email
       // criando clientes e passageiros e passagens
-        $cliente1 = new Cliente("Mateus Benicio", "04938278111");
+        $cliente1 = new Cliente("Mateus Benicio", "04938278111", "");
         $passageiro1 = new Passageiro("Caio Mourão", "19568789", "31958572163", 
                                       "Brasileiro", "14/12/2002", "caiocomedor@gmail.com");
       
@@ -103,7 +103,7 @@
       print_r($sistemas);
     }
 
-    if(1){ //Testes - Lucas -----------------------------------------------------------------
+    if(0){ //Testes - Lucas -----------------------------------------------------------------
       //Sprint 1 -
       echo("Opa, tá funcionando");
       $Azul= new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");
