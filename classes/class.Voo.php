@@ -17,9 +17,11 @@
     protected $freqSem;
     protected $distancia = 780;
     protected $tarifa;
+    protected $tarifaBagagem;
 
 
     public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem)
+
     {  
       
       if(strlen($_codigoDeVoo)>6){
