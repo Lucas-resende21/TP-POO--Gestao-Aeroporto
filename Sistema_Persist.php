@@ -115,6 +115,7 @@
       $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ");
       //Voos
       $SPBH = new Voo("60", "0830", "1000", "LT3234", $confins, $rio, "LT", 1, 200);
+      
 
     }
   

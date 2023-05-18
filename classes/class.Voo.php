@@ -17,9 +17,10 @@
     protected $freqSem;
     protected $distancia = 100000;
     protected $tarifa;
+    protected $tarifaBagagem;
 
 
-    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa)
+    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa, $_tarifaBagagem)
     {  
       
       if(strlen($_codigoDeVoo)>6){
@@ -49,6 +50,7 @@
       $this->destino = $_Destino;
       $this->freqSem = $_freqSem;
       $this->tarifa = $_tarifa;
+      $this->tarifaBagagem = $_tarifaBagagem;
     }
 
     public function setAeronave(Aeronave $_aeronave){
