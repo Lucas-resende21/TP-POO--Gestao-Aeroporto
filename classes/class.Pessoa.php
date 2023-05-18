@@ -1,4 +1,4 @@
-<?php
+ <?php
 /*alterado 17/05 para colocar CPF, nacionalidade, data de nascimento e email*/
 include_once("persist.php");
 use Exception;

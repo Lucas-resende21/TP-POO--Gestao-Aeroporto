@@ -18,20 +18,19 @@
       $this->trajeto[] = $_endereço;
     }
 
-    public function addEndereço($_funcionario){
-      $this->trajeto[] =$_funcionario->getEndereço();
+    public function addEndereço($_coordx, $_coordy){
+      
     }
-    public function CalculaDistancia(){
-      // A implementar. Os endereços ( de funcionário e Aeroporto tem que ser adequados para 2 Coordenadas)
+    public function CalculaDistancia($_x1, $_y1, $_x2, $_y2){
+      return(110.57*sqrt(pow($_x2-$_x1,2)+pow($_y2-$_y1)));
     }
     
     public function CalculaDuração(){
-      // A implementar
+      $this->Duração = $this->distancia/18;
+        // A implementar
     }
     public function setHorarioPartida($_Viagem){
       $this->CalculaDuração();
-      $this->HorarioPartida = $_Viagem->getHorarioP() - $this->Duração;  
+      $this->HorarioPartida = $_Viagem->getHorarioP()-$this->Duração-90;  
     }
-
-    
   }
