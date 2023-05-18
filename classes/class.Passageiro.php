@@ -17,16 +17,17 @@ class Passageiro extends Pessoa
     private $embarque;
     private $passagem;
     private $histDeVoos = array();
+    private $passageiro;
 
     public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email)
     {
         parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
-        //$this->status = $_status;
+        $this->status = $_status;
+        $this->embarque = $_embarque;
+        $this->passagem = $_passagem;
+        $this->histDeVoos = $_histDeVoos;
+        $this->passageiro = $_passageiro;
     }
-
-    //associar passageiro a uma passagem, talvez seja melhor implementar isso em passagem
-
-    //Deve ser possível acessar o histórico de vôos de um passageiro em ordem cronológica, talvez usando include_once
 
     public function cancelaPassagem(Passagem $p) //implementar custo de cancelamento caso passageiro comum
     {
@@ -42,11 +43,20 @@ class Passageiro extends Pessoa
         }
     }
 
-    // implementar alteração de passagem, sem custo para vip com custo para VIP
 
-    public function validaVIP()
+    public function alterarPassagem(Passageiro $passageiro, Voo $voo, $valor)
     {
-        return false;
+        $passageiroVIP = $this->verificarStatusVIP($passageiro); // Método da classe separada para validar se o passageiro é VIP
+
+        if ($passageiroVIP) {
+            // Implementar a lógica para remarcar ou cancelar a passagem sem cobrar do passageiro
+
+            $this->status = "Passagem alterada (VIP)";
+        } else {
+            // Implementar a lógica para cobrar o valor da passagem do passageiro
+
+            $this->status = "Passagem alterada (Valor cobrado: " . $valor . ")";
+        }
     }
 
     public function check_in(Voo $v)
@@ -83,6 +93,8 @@ class Passageiro extends Pessoa
     }
 }
 
+    //Deve ser possível acessar o histórico de vôos de um passageiro em ordem cronológica, talvez usando include_once
+
 /*
 • Todos os status do passageiro em um vôo deve ser passível de registro. São eles:
 o Passagem adquirida --> FALTA
@@ -90,6 +102,5 @@ o Passagem cancelada --> FALTA
 o Check-in realizado --OK
 o Embarque realizado --> OK
 o NO SHOW --> OK
-
 removida as validações e colocadas em pessoa
 */
