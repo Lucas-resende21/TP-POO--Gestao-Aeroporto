@@ -9,18 +9,27 @@
       switch ($_DiaDaSemana) {
         case 0:
           $this->DiaDaSemana = "Domingo";
+          break;
         case 1:
           $this->DiaDaSemana = "Segunda";
+          break;
         case 2:
           $this->DiaDaSemana = "Terça";
+          break;
         case 3:
           $this->DiaDaSemana = "Quarta";
+          break;
         case 4:
           $this->DiaDaSemana = "Quinta";
+          break;
         case 5:
           $this->DiaDaSemana = "Sexta";
+          break;
         case 6:
           $this->DiaDaSemana = "Sabado";
+          break;
+        default:
+          throw new Exception("Dia invalido");
       }
     }
 
