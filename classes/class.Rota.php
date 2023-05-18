@@ -13,11 +13,9 @@
     private $HorarioPartida;
     private $Aeroporto;
 
-    public function __construct($_endereço, $_aeroporto){
+    public function __construct($_aeroporto){
       $this->Aeroporto = $_aeroporto;
-      $this->trajeto[] = $_endereço;
-      // resolver a questão de colocar o endereço do aeroporto na matriz de endereços e adequar dnv os 
-      // outros endereços no programa dessa vez p serem um array(coordx, coordy)
+      $this->addEndereço($_aeroporto->getEndereço());
     }
 
     public function addEndereço($_coordx, $_coordy){

@@ -3,8 +3,7 @@ include_once("class.Pessoa.php");
 
 class Funcionario extends Pessoa {
     private $CHT;
-    private $coordx;
-    private $coordy;
+    private $endereço = array();
     private $companhiaAerea;
     private $aeroportoBase;
 
@@ -31,8 +30,8 @@ class Funcionario extends Pessoa {
 
     public function setEndereco($_coordx, $_coordy){
       //implementar validação do endereço
-      $this->coordx = $_coordx;
-      $this->coordy = $_coordy;
+      $this->endereço[0] = $_coordx;
+      $this->endereço[1] = $_coordy;
     }
 
     public function getCompanhiaAerea() {
