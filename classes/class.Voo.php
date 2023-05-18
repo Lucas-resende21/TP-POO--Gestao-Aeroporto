@@ -15,13 +15,11 @@
     protected $assentos = array();
     protected $passagens = array();
     protected $freqSem;
-    protected $distancia = 780;
+    protected $distancia = 100000;
     protected $tarifa;
-    protected $tarifaBagagem;
 
 
-    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem)
-
+    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa)
     {  
       
       if(strlen($_codigoDeVoo)>6){
@@ -50,7 +48,7 @@
       $this->origem = $_Origem;
       $this->destino = $_Destino;
       $this->freqSem = $_freqSem;
-      $this->tarifa = $this->distancia * 0.25;
+      $this->tarifa = $_tarifa;
     }
 
     public function setAeronave(Aeronave $_aeronave){
@@ -67,7 +65,7 @@
         throw new Exception("Assento invalido");
       }elseif($this->assentos[$_assento] != 0){
         print_r($this->assentos[$_assento]);
-        throw new Exception("Assento ocupado");
+        //throw new Exception("Assento ocupado");
       }else{
         $this->assentos[$_assento] = 1;
         $passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
@@ -75,9 +73,20 @@
       }
     }
 
+    public function getDuracao(){
+      return $this->duracao;
+    }
     public function getHorarioP(){
       return $this->horarioPartida;
     }
+    public function getHorarioC(){
+      return $this->horarioChegada;
+    }
+
+    public function getCodigo(){
+      return $this->codigoDeVoo;
+    } 
+    
     public function getOrigem(){
       return $this->origem;
     }
@@ -85,17 +94,17 @@
     public function getDestino(){
       return $this->destino;
     }
-      
-    public function getCodigo(){
-      return $this->codigoDeVoo;
-    } 
-
+    
     public function getFrequencia(){
       return $this->freqSem;
     }
 
     public function getDistancia(){
       return $this->distancia;
+    }
+
+    public function getTarifa(){
+      return $this->tarifa;
     }
     
     static public function getFilename() {

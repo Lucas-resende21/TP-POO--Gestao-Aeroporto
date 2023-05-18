@@ -19,5 +19,7 @@
     }
 
     public function __destruct() {}
+
+    // Adequar o construtor de viagem aos novos atributos de Voo pra usar ele em Dia
     
   }

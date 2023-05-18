@@ -101,20 +101,38 @@
       print_r($sistemas);
     }
 
-    if(0){ //Testes - Lucas -----------------------------------------------------------------
+    if(1){ //Testes - Lucas -----------------------------------------------------------------
       //Sprint 1 -
       echo("Opa, tá funcionando");
       $Azul= new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");
       $SuperTucano = new Aeronave("Embraer", "E170", "80", "1000", "PT-GUE");
       //$TestePrefixo = new Aeronave("Embraer", "E170", "80", "1000", "Pc-GUE"); 
       $Azul->AdicionaAeronave("Ferrari", "E171", "81", "1001", "PP-GUE");
-      print_r($Azul);
-      $confins = new Aeroporto("CNF", "Confins", "MG");
-      $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ");
+      $confins = new Aeroporto("CNF", "Confins", "MG", "289466", "2102024");
+      $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ", "35667", "32585");
       //Voos
-      $SPBH = new Voo("60", "0830", "1000", "LT3234", $confins, $rio, "LT", 1, 200);
-      
-
+      $BHRJ = new Voo("60", "0830", "1000", "LT3234", $confins, $rio, "LT", "Segunda", 200);
+      //print_r($BHRJ);
+      echo ("\n");
+      $calendario = array();
+      $rotate = 0;
+      for($i=0;$i<31;$i++){
+        if($rotate>6)
+          $rotate = 0;
+        $calendario[$i] = new Dia($rotate);
+        $rotate++;
+      }
+      /*echo(sizeof($calendario));
+      echo ("\n");*/
+      /*echo($calendario[3]->getSem());
+      echo ("\n");*/
+      for($i=0;$i<sizeof($calendario);$i++){
+        if($calendario[$i]->getSem() == $BHRJ->getFrequencia())
+          $calendario[$i]->set
+          echo("Entrou no if");
+          echo ("\n");
+      }
+      //print_r($calendario);    
     }
   
       
