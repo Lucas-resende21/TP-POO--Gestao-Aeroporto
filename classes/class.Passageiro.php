@@ -49,12 +49,21 @@ class Passageiro extends Pessoa
         return false;
     }
 
-    public function check_in(Voo $v) //implementar só poder fazer check-in faltando 48h pro voo até 30 min antes, caso não faça no prazo NO SHOW
+    public function check_in(Voo $v)
     {
-        if ($v->getHorarioPartida - 30) {
-            $this->status = "Check-in";
-        } else {
+        $horarioPartida = new DateTime($v->getHorarioPartida());
+        $horarioAtual = new DateTime();
+        $limiteCheckin = $horarioPartida->sub(new DateInterval('PT30M')); // Subtrai 30 minutos do horário de partida
+
+        $prazoMinimo = $horarioPartida->sub(new DateInterval('P2D')); // Subtrai 48 horas do horário de partida
+
+        if ($horarioAtual > $prazoMinimo && $horarioAtual < $limiteCheckin) {
+            $this->status = "Check-in realizado";
+        } elseif ($horarioAtual >= $limiteCheckin) {
             $this->status = "NO SHOW";
+        } else {
+            // Caso o check-in esteja sendo feito antes das 48 horas do voo
+            // Não atualiza o status
         }
     }
 
