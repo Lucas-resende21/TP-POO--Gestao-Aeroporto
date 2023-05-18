@@ -67,7 +67,7 @@
         throw new Exception("Assento invalido");
       }elseif($this->assentos[$_assento] != 0){
         print_r($this->assentos[$_assento]);
-        //throw new Exception("Assento ocupado");
+        throw new Exception("Assento ocupado");
       }else{
         $this->assentos[$_assento] = 1;
         $passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);

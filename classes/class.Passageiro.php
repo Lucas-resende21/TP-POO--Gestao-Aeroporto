@@ -14,19 +14,13 @@ class Passageiro extends Pessoa
     }
 
     private $status;
-    private $embarque;
     private $passagem;
     private $histDeVoos = array();
-    private $passageiro;
 
     public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email)
     {
         parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
-        $this->status = $_status;
-        $this->embarque = $_embarque;
-        $this->passagem = $_passagem;
-        $this->histDeVoos = $_histDeVoos;
-        $this->passageiro = $_passageiro;
+        
     }
 
     public function cancelaPassagem(Passagem $p) //implementar custo de cancelamento caso passageiro comum
@@ -90,6 +84,7 @@ class Passageiro extends Pessoa
     public function atribuiPassagem($_passagem)
     {
         $this->passagem = $_passagem;
+        $this->status = "Passagem comprada";
     }
 }
 

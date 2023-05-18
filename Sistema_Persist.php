@@ -79,9 +79,8 @@
         $sistema->criaCompanhia($companhia1);
         //$sistema->criaCompanhia($companhia2);
 
-string $_nome, string $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email
       // criando clientes e passageiros e passagens
-        $cliente1 = new Cliente("Mateus Benicio", "04938278111", "");
+        $cliente1 = new Cliente("Mateus Benicio", "25489765", "04938278111", "Brasileiro", "19/04/2004", "mateus@gmail.com");
         $passageiro1 = new Passageiro("Caio Mourão", "19568789", "31958572163", 
                                       "Brasileiro", "14/12/2002", "caiocomedor@gmail.com");
       
@@ -89,8 +88,7 @@ string $_nome, string $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $
         $sistema->criaPassageiro($passageiro1);
       
       // atribuinda passagem ao passageiro
-        $cliente1->compraPassagem($voo1, "40", "2", $passageiro1);
-
+        $cliente1->compraPassagem($voo1->getOrigem(), $voo1->getDestino(), $voo1->getDistancia(), "40", "2", $passageiro1);
       
       // salvando os dados do sistema
       $sistema->save();
@@ -98,7 +96,7 @@ string $_nome, string $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $
 
 
     // Carregando registros já persistidos na classe Sistema
-    if ( 0 ){
+    if ( 1 ){
       $sistemas = Sistema::getRecords();
       print_r($sistemas);
     }
