@@ -34,8 +34,7 @@
     }
 
     public function setViagem($_Voo){
-      $this->viagens[] = new Viagem($_Voo->getDuracao(), $_Voo->getHorarioP(), $_Voo->getHorarioC(), $_Voo->getCodigo(), $_Voo->getOrigem(), $_Voo->getDestino(), $_Voo->getTarifa(), "pendente");
-      //public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa)
+      $this->viagens[] = new Viagem($_Voo->getDuracao(), $_Voo->getHorarioP(), $_Voo->getHorarioC(), $_Voo->getCodigo(), $_Voo->getOrigem(), $_Voo->getDestino(), $_Voo->getSigla(), $_Voo->getFrequencia(), $_Voo->getTarifa(), "pendente");
     }
 
     public function getSem(){

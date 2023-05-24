@@ -94,6 +94,10 @@
     public function getDestino(){
       return $this->destino;
     }
+
+    public function getSigla(){
+      return $this->codigoDeVoo;
+    }
     
     public function getFrequencia(){
       return $this->freqSem;

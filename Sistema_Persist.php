@@ -2,7 +2,7 @@
     require_once('global.php');
 
     // Criando o Sistema
-    if( 1 ){
+    if( 0 ){
       $sistema = new Sistema();
 
       // criando calendário - mês 1
@@ -110,9 +110,7 @@
       $Azul->AdicionaAeronave("Ferrari", "E171", "81", "1001", "PP-GUE");
       $confins = new Aeroporto("CNF", "Confins", "MG", "289466", "2102024");
       $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ", "35667", "32585");
-      //Voos
       $BHRJ = new Voo("60", "0830", "1000", "LT3234", $confins, $rio, "LT", "Segunda", 200);
-      //print_r($BHRJ);
       echo ("\n");
       $calendario = array();
       $rotate = 0;
@@ -122,17 +120,15 @@
         $calendario[$i] = new Dia($rotate);
         $rotate++;
       }
-      /*echo(sizeof($calendario));
-      echo ("\n");*/
-      /*echo($calendario[3]->getSem());
-      echo ("\n");*/
+      $ferias = new Viagem("60", "0830", "1000", "LT3234", $confins, $rio, "LT", "Segunda", 200, "Pendente");
+      //Sprint 2 (Criação de passagem e compra de passagem, Calendario e Escala)
+      $calendario[2]->setViagem($BHRJ); 
       for($i=0;$i<sizeof($calendario);$i++){
         if($calendario[$i]->getSem() == $BHRJ->getFrequencia())
-          $calendario[$i]->set
-          echo("Entrou no if");
-          echo ("\n");
+          $calendario[$i]->setViagem($BHRJ);
       }
-      //print_r($calendario);    
+      $cliente1 = new Cliente("Mateus Benicio", "25489765", "04938278111", "Brasileiro", "19/04/2004", "mateus@gmail.com");
+      // Testar instanciar um cliente e a compra de passagens de um cliente.
     }
   
       

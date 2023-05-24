@@ -6,11 +6,9 @@
   {
     private $status;
 
-    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo,
-                                 $_cidadeOrigem, $_cidadeDestino, $_status)
+    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa, $_status)
     {
-      parent::__construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, 
-                           $_cidadeOrigem, $_cidadeDestino);
+      parent::__construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa);
       $this->status = $_status;
     }
     private function calculaDuracao($_duracao, $_horarioPartida, $horarioChegada)
