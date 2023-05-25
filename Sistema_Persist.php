@@ -2,7 +2,7 @@
     require_once('global.php');
 
     // Criando o Sistema
-    if( 0 ){
+    if( 1 ){
       $sistema = new Sistema();
 
       // criando calendário - mês 1
@@ -12,10 +12,12 @@
         $confins = new Aeroporto("CNF", "Confins", "MG", "289466", "2102024");
         $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ", "35667", "32585");
         $floripa = new Aeroporto("FLN", "Florianópolis", "SC", "12315", "87654");
+        $natal = new Aeroporto("NAT", "Natal", "RN", "316542", "645219");
   
         $sistema->criaAeroporto($confins);
         $sistema->criaAeroporto($rio);
         $sistema->criaAeroporto($floripa);
+        $sistema->criaAeroporto($natal);
     
       // Instanciando novas companhias e seus complementos
         $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LT");
@@ -24,21 +26,21 @@
         //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUA");
         //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUB");
         //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUC");
-        //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUD");
+        $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUD");
         $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUE");
 
       // criando voos e atrbuindo as aeronaves aos voos
         $voo1 = new Voo("50", "1330", "1420", "LT1234", $confins->getSigla(), $rio->getSigla(), $companhia1->getSigla(), "1");
-        //$voo2 = new Voo("240", "1600", "1730", "LT2234", "CNF", "FPA");
+        $voo2 = new Voo("240", "1600", "1730", "LT2234", $rio->getSigla(), $floripa->getSigla(), $companhia1->getSigla(), "1");
         //$voo3 = new Voo("90", "0830", "1000", "LT3234", "CNF", "CGH");
         $voo4 = new Voo("60", "0830", "1000", "LT3234", $floripa->getSigla(), $confins->getSigla(), $companhia1->getSigla(), "2");
   
         $voo1->setAeronave($companhia1->getAeronave(0));
-        //$voo2->setAeronave($companhia1->getAeronave(1));
+        $voo2->setAeronave($companhia1->getAeronave(1));
         //$voo3->setAeronave($companhia1->getAeronave(2));
         
         $companhia1->setVoo($voo1);
-        //$companhia1->setVoo($voo2);
+        $companhia1->setVoo($voo2);
         //$companhia1->setVoo($voo3);
         //$companhia1->setVoo($voo4);
 
@@ -81,17 +83,27 @@
 
       // criando clientes e passageiros e passagens
         $cliente1 = new Cliente("Mateus Benicio", "25489765", "04938278111", "Brasileiro", "19/04/2004", "mateus@gmail.com");
-        $passageiro1 = new Passageiro("Caio Mourão", "19568789", "31958572163", 
-                                      "Brasileiro", "14/12/2002", "caiocomedor@gmail.com");
+        $passageiro1 = new Passageiro("Caio Mourão", "19568789", "31958572163", "Brasileiro", "14/12/2002", "caiocomedor@gmail.com");
+
+        $cliente2 = new Cliente("Luiz Gonzaga", "78946523", "78932145689", "Brasileiro", "02/08/1989", "luizgonzaga@gmail.com");
+        $passageiro2 = new Passageiro("Mbappe lottin", "78932145", "75395148621", "Francês", "20/12/1998", "mbappe@gmail.com");
       
         $sistema->criaCliente($cliente1);
         $sistema->criaPassageiro($passageiro1);
+        
+        $sistema->criaCliente($cliente2);
+        $sistema->criaPassageiro($passageiro2);
       
-      // atribuinda passagem ao passageiro
-        $cliente1->compraPassagem($voo1->getOrigem(), $voo1->getDestino(), $voo1->getDistancia(), "40", "2", $passageiro1);
+      // Criando um vetor com todos os voos disponiveis
+        $voos = array();
+        $voos = $companhia1->getVoos();
+      
+      // atribuindo passagem ao passageiro
+        $cliente1->compraPassagem($voo1->getOrigem(), $voo1->getDestino(), "700", "40", "2", $passageiro1, $voos);
+        $cliente2->compraPassagem($voo1->getOrigem(), $voo2->getDestino(), "1600", "41", "2", $passageiro2, $voos);
       
       // salvando os dados do sistema
-      $sistema->save();
+        $sistema->save();
     }
 
 
@@ -101,7 +113,7 @@
       print_r($sistemas);
     }
 
-    if(1){ //Testes - Lucas -----------------------------------------------------------------
+    if(0){ //Testes - Lucas -----------------------------------------------------------------
       //Sprint 1 -
       echo("Opa, tá funcionando");
       $Azul= new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");

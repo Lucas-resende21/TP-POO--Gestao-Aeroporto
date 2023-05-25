@@ -77,8 +77,7 @@
     }
     
     public function getVoos(){
-      print_r($this->_voos);
-      echo ("\n");
+      return $this->_voos;
     }
     
     public function removeVoo(Voo $_voo){

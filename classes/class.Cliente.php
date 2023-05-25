@@ -35,15 +35,14 @@ class Cliente extends Pessoa{
   }
   */
 
-  public function compraPassagem($_origem, $_destino ,$_distancia, $_assento, $_bagagens, Passageiro $_viajante)
+  public function compraPassagem($_origem, $_destino ,$_distancia, $_assento, $_bagagens, Passageiro $_viajante, $_voos)
   {
-    $this->histCompras[] = $_voo->setPassagem($_bagagens, $_assento, $_origem, $_destino, $_voo->getDistancia());//set passagem tem que mudar de local, porque não faz sentido criar uma passagem baseando em um voo, então para mudar a compra e se basear em uma origem e um destino tem q mudar isso para checar se o assento tá ocupado ou não.
-    for($i ; $i < count($this->histCompras); $i++){
-      if($i == (count($this->histCompras) - 1)){
-        $passagem = new Passagem($_bagagens, $_assento, $_voo->getOrigem(), $_voo->getDestino(), $_voo->getDistancia());
-      }
+    $passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
+    if($passagem->criaEscala($_voos, $_assento) == 1){
+      $this->histCompras[] = $passagem;
+      $_viajante->atribuiPassagem($passagem);
     }
-    $_viajante->atribuiPassagem($passagem);
+    //set passagem tem que mudar de local, porque não faz sentido criar uma passagem baseando em um voo, então para mudar a compra e se basear em uma origem e um destino tem q mudar isso para checar se o assento tá ocupado ou não.
   }
 
   public function totalPassagens($compraTotal)

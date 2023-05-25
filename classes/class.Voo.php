@@ -19,7 +19,7 @@
     protected $tarifa;
 
 
-    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa)
+    public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem)// tirei a tarifa do construtor
     {  
       
       if(strlen($_codigoDeVoo)>6){
@@ -39,7 +39,6 @@
           throw new Exception("Codigo tem que ser letra maiuscula");
         }  
       }
-      //precisa de mudar essa validação
       
       $this->duracao = $_duracao;
       $this->horarioPartida = $_horarioPartida;
@@ -48,7 +47,7 @@
       $this->origem = $_Origem;
       $this->destino = $_Destino;
       $this->freqSem = $_freqSem;
-      $this->tarifa = $_tarifa;
+      //$this->tarifa = $_tarifa;
     }
 
     public function setAeronave(Aeronave $_aeronave){
@@ -58,18 +57,18 @@
       }
     }
 
-    public function setPassagem($_bagagens, $_assento, $_origem, $_destino, $_distancia){
+    public function setAssento($_assento){
       if($_assento > $this->aeronave->getAssentos()){
         throw new Exception("Assento invalido");
       }elseif($_assento < 0){
         throw new Exception("Assento invalido");
       }elseif($this->assentos[$_assento] != 0){
-        print_r($this->assentos[$_assento]);
-        //throw new Exception("Assento ocupado");
+        //print_r($this->assentos[$_assento]);
+        throw new Exception("Assento ocupado");
       }else{
         $this->assentos[$_assento] = 1;
-        $passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
-        return($passagem);
+        //$passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
+        //return($passagem);
       }
     }
 

@@ -28,21 +28,27 @@
       // E depois uma segunda function pra verificar se os assentos escolhidos estao disponiveis
     }    
 
-    public function criaEscala($voos)
+    public function criaEscala($voos, $assento)
     {
-      for($i = 0; $i < $voos->count(); $i++){
-        if($voos[i]->getOrigem() == $origem && $voos[i]->getDestino() == $destino){
-          $voosP[] = $voos[i];
-          break;
+      for($i = 0; $i < count($voos); $i++){
+        if($voos[$i]->getOrigem() == $this->origem && $voos[$i]->getDestino() == $this->destino){
+          $this->voosP[] = $voos[$i];
+          $voos[$i]->setAssento($assento);
+          return 1;
         }
-        elseif($voos[i]->getOrigem() == $origem && $voos[i]->getDestino() != $destino){
-          $voosP[] = $voos[i];
-          for($i = 0; $i < $voos->count(); $i++){
-            if($voos[i]->getOrigem() == $voosP[0]->getDestino() && $voos[i]->getDestino() == $destino){
-              $voosP[] = $voos[i];
+        elseif($voos[$i]->getOrigem() == $this->origem && $voos[$i]->getDestino() != $this->destino){
+          $this->voosP[] = $voos[$i];
+          $voos[$i]->setAssento($assento);
+          for($i = 0; $i < count($voos); $i++){
+            if($voos[$i]->getOrigem() == $this->voosP[0]->getDestino() && $voos[$i]->getDestino() == $this->destino){
+              $this->voosP[] = $voos[$i];
+              $voos[$i]->setAssento($assento);
+              break;
+            }else{
+              throw new Exception("Rota inexistente.");
             }
           }  
-          break;
+          return 1;
         }
       }
     }
