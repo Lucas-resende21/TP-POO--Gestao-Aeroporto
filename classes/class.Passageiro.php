@@ -27,12 +27,11 @@ class Passageiro extends Pessoa
     {
         for ($i = 0; i < sizeof($this->_passagens); $i++) {
             if ($this->_passagens[$i] == $p) {
-                unset($this->_passagens[$i]);
-                print_r("Passagem cancelada.");
-                echo ("</p>");
-                break;
-
-                return 200;
+              unset($this->_passagens[$i]);
+              print_r("Passagem cancelada.");
+              print_r("Valor do cancelamento: R$120,00");
+              echo ("</p>");
+              break;
             }
         }
     }

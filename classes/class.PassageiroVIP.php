@@ -22,10 +22,9 @@
         {
           unset($this->_passagens[$i]);
             print_r("Passagem cancelada.");
+            print_r("Valor do cancelamento: R$0,00");
             echo ("</p>");
           break;
-
-          return 0;
         }
       }
     }
