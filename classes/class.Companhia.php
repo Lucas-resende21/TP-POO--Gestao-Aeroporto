@@ -39,8 +39,11 @@
     
 
     public function adicionaAeronave(string $fab, string $mod, int $capPsg, float $capCarg, string $reg) {
-
+      try{
       $aeronave = new Aeronave($fab, $mod, $capPsg, $capCarg, $reg);
+      }catch (Exception $e){
+        echo 'Exceção capturada', $e->getMessage(), "\n";
+      }
       $this->_aeronaves[] = $aeronave;
     }
 

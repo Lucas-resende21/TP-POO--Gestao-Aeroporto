@@ -106,7 +106,11 @@
       echo("Opa, tá funcionando");
       $Azul= new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");
       $SuperTucano = new Aeronave("Embraer", "E170", "80", "1000", "PT-GUE");
-      //$TestePrefixo = new Aeronave("Embraer", "E170", "80", "1000", "Pc-GUE"); 
+      try{
+      $TestePrefixo = new Aeronave("Embraer", "E170", "80", "1000", "Pc-GUE");
+      }catch(Exception $e){
+        echo 'Exceção capturada: ', $e->getMessage(), "\n";
+      }
       $Azul->AdicionaAeronave("Ferrari", "E171", "81", "1001", "PP-GUE");
       $confins = new Aeroporto("CNF", "Confins", "MG", "289466", "2102024");
       $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ", "35667", "32585");
