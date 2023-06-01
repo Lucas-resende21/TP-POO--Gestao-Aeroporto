@@ -27,10 +27,18 @@
         }
     }
 
+    public function AddVoosCompanhia($_companhia){
+      for($i = 0; $i<sizeof($_companhia->getVoos()); $i++){
+        $this->AddVooCalendario($_companhia->getVoo());
+      }
+    }
+
     public function AddVooCalendario($_voo){
       for($i = 1; $i <= 30; $i++){
         if($_voo->getFrequencia() == $this->calendario[$i]->getSem()){
             $this->calendario[$i]->setViagem($_voo);
+        }elseif($_voo->getFrequencia() == "diario"){
+          $this->calendario[$i]->setViagem($_voo);
         }
       }
     }
@@ -108,6 +116,10 @@
     }
 
     public function getPassagens(){
+      print_r($this->passagens);
+    }
+
+    public function getCalendario(){
       print_r($this->passagens);
     }
 
