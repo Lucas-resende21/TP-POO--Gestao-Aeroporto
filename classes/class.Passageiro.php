@@ -30,10 +30,23 @@ class Passageiro extends Pessoa
               unset($this->_passagens[$i]);
               print_r("Passagem cancelada.");
               print_r("Valor do cancelamento: R$120,00");
+              /*Passagem::*/setPreco(120);
               echo ("</p>");
               break;
             }
         }
+    }
+
+    public function alteraPassagem(Passagem $p, $_bagagens, $_assento, $_origem, $_destino,           $_distancia)
+    {
+      for($i=0; i<sizeof($this->_passagens); $i++)
+      {
+        if($this->_passagens[$i] == $p)
+        {
+          _passagens[$i].setAtributos(_bagagens, _assento, _origem, _destino, distancia);
+          //istaDeObjetos.get(indice).setAtributoQualquer("Valor Novo");
+        }
+      }
     }
 
 

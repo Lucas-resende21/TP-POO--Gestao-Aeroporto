@@ -14,6 +14,7 @@
     protected $aeronave;
     protected $assentos = array();
     protected $passagens = array();
+    protected $tripulacao = array();
     protected $freqSem;
     protected $distancia = 100000;
     protected $tarifa;
@@ -70,6 +71,13 @@
         //$passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
         //return($passagem);
       }
+    }
+
+    public function adicionaTripulacao($nome, $documento, $CPF, $nacionalidade, $dataDeNascimento, $email,               $CHT, $coordx, $coordy, $companhiaAerea, $aeroportoBase){
+      
+      $funcionario = new funcionario($nome, $documento, $CPF, $nacionalidade, $dataDeNascimento, $email,                 $CHT, $coordx, $coordy, $companhiaAerea, $aeroportoBase);
+
+      $this->tripulação[] = $funcionario; 
     }
 
     public function getDuracao(){

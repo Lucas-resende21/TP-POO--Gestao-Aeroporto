@@ -11,9 +11,11 @@
     private $_razsocial;
     private $_CNPJ;
     private $_sigla;
+    private $_planoDeMilhagem;
     private $_aeronaves = array();
     private $_voos = array();
     private $_passagens = array(); 
+    private $_funcionarios = array();
     static $local_filename = "companhia.txt";
 
     

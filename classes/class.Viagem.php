@@ -1,7 +1,8 @@
 <?php
 
   include_once("class.Voo.php");
-    
+  include_once("class.Rota.php");
+
    class Viagem extends Voo
   {
     private $status;

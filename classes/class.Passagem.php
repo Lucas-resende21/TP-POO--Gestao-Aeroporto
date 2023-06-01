@@ -59,25 +59,21 @@
       if($p->validaVIP())
       {
         $this->preco = (($bagagens-1)*(50*0.5)) + ($distancia*0.02);
-        if($p->cancelaPassagem())
-        {
-          $this->preco == 0;
-        }
       }
       else
       {
         $this->preco = ($bagagens)*(50) + ($distancia*0.02);
-        if($p->cancelaPassagem())
-        {
-          $this->preco == cancelaPassagem();
-        }
       }
     }
-      
 
     public function getPreco($preco)
     {
       return $this->preco;
+    }
+
+    public function setPreco($_preco)
+    {
+      $this->preco == _preco;
     }
 
     static public function getFilename() 
