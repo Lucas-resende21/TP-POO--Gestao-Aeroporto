@@ -44,11 +44,24 @@
       echo("Calendario criado");
       echo("\n");
 
-      $sistema->AddVoosCompanhia($companhia1);
-      $sistema->AddVoosCompanhia($companhia2);
-
-      echo();
+      //$sistema->AddVoosCompanhia($companhia1);
+      //$sistema->AddVoosCompanhia($companhia2);
+      // A função AddVoosCompanhia não está funcionando
+      $sistema->AddVooCalendario($vooExc);
+      $sistema->AddVooCalendario($voo1_2);
+      $sistema->AddVooCalendario($voo2_1);
+      $sistema->AddVooCalendario($voo2_2);
+      $sistema->AddVooCalendario($voo3_1);
+      $sistema->AddVooCalendario($voo3_2);
+      $sistema->AddVooCalendario($voo4_1);
+      $sistema->AddVooCalendario($voo4_2);
+      
+      
+      for($i = 1; $i<31; $i++){
+        print_r($sistema->getViagens($i));
+      }
       echo("\n");
+      
       
     }
 

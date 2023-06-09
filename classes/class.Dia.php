@@ -39,5 +39,9 @@
 
     public function getSem(){
       return($this->DiaDaSemana);
+    }
+
+    public function getViagem(){
+      return($this->viagens);
     }     
   }

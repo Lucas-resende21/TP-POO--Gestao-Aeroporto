@@ -120,7 +120,11 @@
     }
 
     public function getCalendario(){
-      print_r($this->passagens);
+      return($this->calendario);
+    }
+
+    public function getViagens($_i){
+      return($this->calendario[$_i]->getViagem());
     }
 
     static public function getFilename() {
