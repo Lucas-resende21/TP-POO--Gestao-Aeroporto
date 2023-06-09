@@ -2,7 +2,7 @@
     require_once('global.php');
 
     // Criando o Sistema
-    if( 1 ){
+    if( 0 ){
       $sistema = new Sistema();
 
       // criando calendário - mês 1
@@ -108,7 +108,7 @@
 
 
     // Carregando registros já persistidos na classe Sistema
-    if ( 1 ){
+    if ( 0 ){
       $sistemas = Sistema::getRecords();
       print_r($sistemas);
     }
@@ -146,5 +146,13 @@
       $cliente1 = new Cliente("Mateus Benicio", "25489765", "04938278111", "Brasileiro", "19/04/2004", "mateus@gmail.com");
       // Testar instanciar um cliente e a compra de passagens de um cliente.
     }
-  
+
+    if(1){
+      $sistema = new Sistema();
+      $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
+      print_r($sistema->getUsers());
+
+      
+    }
+
       

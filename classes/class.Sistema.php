@@ -4,6 +4,7 @@
   include_once("class.Aeroporto.php");
   include_once("class.Cliente.php");
   include_once("class.Dia.php");
+  include_once("class.User.php");
 
   class Sistema extends persist{
 
@@ -15,6 +16,8 @@
     private $funcionarios = array();
     private $passagens = array();
     private $companhias = array();
+    private $usuarios = array();
+    private $sessao;
 
     public function criaCalendário($_1stdia, $_numdias){
     $rotate = $_1stdia;
@@ -127,6 +130,21 @@
       return($this->calendario[$_i]->getViagem());
     }
 
+    public function setUser($_login, $_senha, $_email){
+      $this->usuarios[] = new User($_login, $_senha, $_email);
+    }
+
+    public function getUsers(){
+      return($this->usuarios);
+    }
+
+    public function login($_login, $_senha){
+      for($i=0; $i<sizeof($this->usuarios); $i++){
+        if($_login == $this->usuarios[$i] && $_senha == $this->usuarios[$i]){
+          $this->sessao = $this->usuarios[$i];
+        }
+      }
+    }
     static public function getFilename() {
       return get_called_class()::$local_filename;
     }
