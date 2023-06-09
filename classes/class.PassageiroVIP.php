@@ -1,20 +1,20 @@
 <?php
   include_once("persist.php");
-  include_once("class.cliente.php");
+  include_once("class.Cliente.php");
 
   class PassageiroVIP extends Passageiro
   {
     static $local_filename = "passageiroVIP.txt";
     static public function getFilename() {
       return get_called_class()::$local_filename;
-  }
+    }
 
     private $numRegistro;
     private $programaDeMilhagem;
     private $categoria;
     private $pontos;
 
-    public function cancelaPassagem()
+    public function cancelaPassagem(Passagem $p)
     {
       for($i=0; i<sizeof($this->_passagens); $i++)
       {
@@ -23,7 +23,7 @@
           unset($this->_passagens[$i]);
             print_r("Passagem cancelada.");
             //print_r("Valor do cancelamento: R$0,00");
-            if(programaDeMilhagem == )
+            /*if(programaDeMilhagem == )
             {
               setPreco(120); 
               print_r("Passagem cancelada.");
@@ -36,7 +36,7 @@
               print_r("Valor do cancelamento: R$120,00");
             }
           echo ("</p>");
-          break;
+          break;*/
         }
       }
     }

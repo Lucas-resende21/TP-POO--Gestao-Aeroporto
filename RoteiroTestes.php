@@ -61,7 +61,14 @@
         print_r($sistema->getViagens($i));
       }
       echo("\n");
-      
+
+      $cliente1 = new Cliente("Mateus Benicio", "25489765", "04938278111", "Brasileiro", "19/04/2004", "mateus@gmail.com");
+      $passageiro1 = new PassageiroVIP("Caio Mourão", "19568789", "31958572163", "Brasileiro", "14/12/2002", "caiocomedor@gmail.com");
+      $sistema->criaCliente($cliente1);
+      $sistema->criaPassageiro($passageiro1);
+
+      $cliente1->compraPassagem($voo1_2->getOrigem(), $voo1_2->getDestino(), $voo1_2->getDistancia(), "40", "2", $passageiro1, $voo1_2);
+      // Ta dando erro
       
     }
 
