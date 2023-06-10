@@ -140,8 +140,12 @@
 
     public function login($_login, $_senha){
       for($i=0; $i<sizeof($this->usuarios); $i++){
-        if($_login == $this->usuarios[$i] && $_senha == $this->usuarios[$i]){
+        if($_login == $this->usuarios[$i]->getLogin() && $_senha == $this->usuarios[$i]->getSenha()){
           $this->sessao = $this->usuarios[$i];
+          print_r("Usuario $_login logado");
+          print_r("\n");
+        }else{
+          return("Senha ou login inválidos");
         }
       }
     }

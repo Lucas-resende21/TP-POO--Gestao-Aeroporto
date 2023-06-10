@@ -2,6 +2,8 @@
   require_once('global.php');
     if( 1 ){
       $sistema = new Sistema();
+      $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
+      $sistema->login("Lucas", "abacate");
 
       $companhia1 = new Companhia("Latam", "001", "Latam Airlines do Brasil S.A.", "11222333444455", "LA");
       $companhia2 = new Companhia("Azul", "002", "Azul Linhas Aéreas Brasileiras S.A.", "22111333444455", "AD");

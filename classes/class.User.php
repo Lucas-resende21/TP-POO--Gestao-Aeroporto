@@ -13,6 +13,14 @@
       $this->email = $_email;      
     }
 
+    public function getSenha(){
+      return($this->senha);
+    }
+
+    public function getLogin(){
+      return($this->login);
+    }
+
     
   }
    

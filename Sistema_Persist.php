@@ -150,8 +150,7 @@
     if(1){
       $sistema = new Sistema();
       $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
-      print_r($sistema->getUsers());
-
+      $sistema->login("Lucas", "abacate");
       
     }
 
