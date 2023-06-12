@@ -2,32 +2,36 @@
     require_once('global.php');
 
     // Criando o Sistema
-    if( 0 ){
+    if( 1 ){
       $sistema = new Sistema();
+      $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
+      $sistema->login("Lucas", "abacate");
 
       // criando calendário - mês 1
         //$sistema->criaCalendário("1", "30");
       
-      // criando aeropostos
+      // criando aeroportos
         $confins = new Aeroporto("CNF", "Confins", "MG", "289466", "2102024");
-        $rio = new Aeroporto("SDU", "Rio de Janeiro", "RJ", "35667", "32585");
-        $floripa = new Aeroporto("FLN", "Florianópolis", "SC", "12315", "87654");
-        $natal = new Aeroporto("NAT", "Natal", "RN", "316542", "645219");
+        $guarulhos = new Aeroporto("GRU", "Guarulhos", "SP", "35667", "32585");
+        $congonhas = new Aeroporto("CGH", "São Paulo", "SP", "12315", "87654");
+        $galeao = new Aeroporto("GIG", "Rio de Janeiro", "RJ", "316542", "645219");
+        $afonsopena = new Aeroporto("CWB", "São José dos Pinhais", "PR", "367168", "145219")
   
         $sistema->criaAeroporto($confins);
-        $sistema->criaAeroporto($rio);
-        $sistema->criaAeroporto($floripa);
-        $sistema->criaAeroporto($natal);
+        $sistema->criaAeroporto($guarulhos);
+        $sistema->criaAeroporto($congonhas);
+        $sistema->criaAeroporto($galeao);
+        $sistema->criaAeroporto($afonsopena);
     
       // Instanciando novas companhias e seus complementos
-        $companhia1 = new Companhia("Latam", "LT", "Latam L.A", "102345678000199", "LT");
+        $companhia1 = new Companhia("Latam", "001", "Latam Airlines do Brasil S.A.", "102345678000199", "LA");
       
       // adicionando aeronaves
-        //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUA");
+        $companhia1->adicionaAeronave("Embraer", "175", "180", "600", "PX-RUZ");
         //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUB");
         //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUC");
-        $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUD");
-        $companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUE");
+        //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUD");
+        //$companhia1->adicionaAeronave("Embraer", "E170", "80", "1000", "PP-GUE");
 
       // criando voos e atrbuindo as aeronaves aos voos
         $voo1 = new Voo("50", "1330", "1420", "LT1234", $confins->getSigla(), $rio->getSigla(), $companhia1->getSigla(), "1");
@@ -53,33 +57,32 @@
         //$companhia1->save();
 
       
-      $companhia2 = new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");
-      /*
+      $companhia2 = new Companhia("Azul", "002", "Azul Linhas Aéreas Brasileiras S.A.", "102345671234198", "AD");
+      
         // adicionando aeronaves
         $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUC");
-        $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUD");
-        $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUE");
-        $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUF");
-        $companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUG");
+        //$companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUD");
+        //$companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUE");
+        //$companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUF");
+        //$companhia2->adicionaAeronave("Embraer", "E170", "80", "1000", "PT-GUG");
         
       // criando voos e atrbuindo as aeronaves aos voos
-        $voo1 = new Voo("80", "1400", "1500", "AD1234", "SVD", "CGH");
-        $voo2 = new Voo("320", "1600", "1730", "AD2234", "SVD", "FPA");
-        $voo3 = new Voo("60", "0830", "1000", "AD3234", "SVD", "CNF");
+        $vooazul1 = new Voo("80", "1400", "1500", "AC1329", $confins->getSigla(), $guarulhos->getSigla(), "1");
+        //$voo2 = new Voo("320", "1600", "1730", "AD2234", "SVD", "FPA");
+        // $voo3 = new Voo("60", "0830", "1000", "AD3234", "SVD", "CNF");
   
         $voo1->setAeronave($companhia2->getAeronave(0));
-        $voo2->setAeronave($companhia2->getAeronave(1));
-        $voo3->setAeronave($companhia2->getAeronave(2));
+        //$voo2->setAeronave($companhia2->getAeronave(1));
+        //$voo3->setAeronave($companhia2->getAeronave(2));
         
         
-        $companhia2->setVoo($voo1);
-        $companhia2->setVoo($voo2);
-        $companhia2->setVoo($voo3);
-      */
+        $companhia2->setVoo($vooazul1);
+        //$companhia2->setVoo($voo2);
+        //$companhia2->setVoo($voo3);
       
       // adicionando as companhias no sistema
         $sistema->criaCompanhia($companhia1);
-        //$sistema->criaCompanhia($companhia2);
+        $sistema->criaCompanhia($companhia2);
 
       // criando clientes e passageiros e passagens
         $cliente1 = new Cliente("Mateus Benicio", "25489765", "04938278111", "Brasileiro", "19/04/2004", "mateus@gmail.com");
@@ -108,7 +111,7 @@
 
 
     // Carregando registros já persistidos na classe Sistema
-    if ( 0 ){
+    if ( 1 ){
       $sistemas = Sistema::getRecords();
       print_r($sistemas);
     }
@@ -147,7 +150,7 @@
       // Testar instanciar um cliente e a compra de passagens de um cliente.
     }
 
-    if(1){
+    if(0){
       $sistema = new Sistema();
       $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
       $sistema->login("Lucas", "abacate");
