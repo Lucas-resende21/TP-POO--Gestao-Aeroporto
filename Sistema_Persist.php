@@ -1,8 +1,12 @@
 <?php
     require_once('global.php');
-
+    if(1){
+      $sistema = new Sistema();
+      $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
+      $sistema->login("Lucas", "abacate");
+    }
     // Criando o Sistema
-    if( 1 ){
+    if(0){
       $sistema = new Sistema();
       $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
       $sistema->login("Lucas", "abacate");
@@ -111,7 +115,7 @@
 
 
     // Carregando registros já persistidos na classe Sistema
-    if ( 1 ){
+    if ( 0 ){
       $sistemas = Sistema::getRecords();
       print_r($sistemas);
     }
@@ -150,11 +154,6 @@
       // Testar instanciar um cliente e a compra de passagens de um cliente.
     }
 
-    if(0){
-      $sistema = new Sistema();
-      $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
-      $sistema->login("Lucas", "abacate");
-      
-    }
+   
 
       

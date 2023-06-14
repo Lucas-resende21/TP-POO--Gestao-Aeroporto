@@ -5,6 +5,7 @@
   include_once("class.Cliente.php");
   include_once("class.Dia.php");
   include_once("class.User.php");
+  include_once("class.Log.php");
 
   class Sistema extends persist{
 
@@ -18,7 +19,19 @@
     private $companhias = array();
     private $usuarios = array();
     private $sessao;
+    private Log $logSist;
 
+    /*public function __construct(){
+      $this->logSist = new Log();
+      $this->logSist->escrita("Sistema iniciado as 13:55 de 14/06");
+      echo("Sistema iniciado as 13:55 de 14/06");
+      echo("\n");
+    }*/
+
+    public function __construct(){
+      $this->logSist = new Log();  
+    }
+    
     public function criaCalendário($_1stdia, $_numdias){
     $rotate = $_1stdia;
         for($i = 1; $i <= $_numdias; $i++){
@@ -132,6 +145,7 @@
 
     public function setUser($_login, $_senha, $_email){
       $this->usuarios[] = new User($_login, $_senha, $_email);
+      $this->logSist->escrita("Usuario $_login criado");
     }
 
     public function getUsers(){
@@ -142,13 +156,17 @@
       for($i=0; $i<sizeof($this->usuarios); $i++){
         if($_login == $this->usuarios[$i]->getLogin() && $_senha == $this->usuarios[$i]->getSenha()){
           $this->sessao = $this->usuarios[$i];
-          print_r("Usuario $_login logado");
-          print_r("\n");
+          $this->logSist->escrita("Usuario $_login logado");
         }else{
           return("Senha ou login inválidos");
         }
       }
     }
+
+    public function getLogSist(){
+      return($this->logSist->getRegistro());
+    }
+
     static public function getFilename() {
       return get_called_class()::$local_filename;
     }
