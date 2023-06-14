@@ -29,7 +29,7 @@
     }*/
 
     public function __construct(){
-      $this->logSist = new Log();  
+      $this->logSist = new Log();
     }
     
     public function criaCalendário($_1stdia, $_numdias){
@@ -60,7 +60,12 @@
     }
 
     public function criaCompanhia(Companhia $_companhia){
+      /*if($this->sessao == NULL){
+        throw new Exception("Não há um usuário Logado");
+      }*/
       $this->companhias[] = $_companhia;
+      $usuario = $this->getUser();
+      $this->logSist->escrita("Companhia $_companhia criada pelo usuario $usuario");
     }
 
     public function removeCompanhia(Companhia $_companhia){
@@ -152,10 +157,17 @@
       return($this->usuarios);
     }
 
+    public function getUser(){
+      return($this->usuarios[$this->getSessao()]->getLogin());
+    }
+
+    public function getSessao(){
+      return($this->sessao);
+    }
     public function login($_login, $_senha){
       for($i=0; $i<sizeof($this->usuarios); $i++){
         if($_login == $this->usuarios[$i]->getLogin() && $_senha == $this->usuarios[$i]->getSenha()){
-          $this->sessao = $this->usuarios[$i];
+          $this->sessao = $i;
           $this->logSist->escrita("Usuario $_login logado");
         }else{
           return("Senha ou login inválidos");
