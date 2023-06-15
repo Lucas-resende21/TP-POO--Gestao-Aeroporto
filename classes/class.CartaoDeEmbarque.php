@@ -2,6 +2,7 @@
 
 include_once("passageiro.php");
 include_once("class.Voo.php");
+include_once("class.Passagem.php")
 include_once("persist.php");
 
 public function setNome($_nome){
