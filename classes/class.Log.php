@@ -7,6 +7,8 @@
     }
 
     public function escrita($_string){
+      $today = date("F j, Y, g:i a");  
+      $_string = $_string." ".$today;
       $this->registro[] = $_string;
       print_r($_string);
       echo("\n");

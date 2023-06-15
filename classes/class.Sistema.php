@@ -20,16 +20,20 @@
     private $usuarios = array();
     private $sessao;
     private Log $logSist;
+    public static $instance;
+    
 
-    /*public function __construct(){
-      $this->logSist = new Log();
-      $this->logSist->escrita("Sistema iniciado as 13:55 de 14/06");
-      echo("Sistema iniciado as 13:55 de 14/06");
-      echo("\n");
-    }*/
 
-    public function __construct(){
+    private function __construct(){
       $this->logSist = new Log();
+      $this->sessao = 'NULL';
+    }
+
+    public static function getInstance(){
+      if(!isset(self::$instance)){
+        self::$instance = new Sistema();
+      }
+      return self::$instance;
     }
     
     public function criaCalendário($_1stdia, $_numdias){
@@ -60,9 +64,9 @@
     }
 
     public function criaCompanhia(Companhia $_companhia){
-      /*if($this->sessao == NULL){
+      if($this->sessao == 'NULL'){
         throw new Exception("Não há um usuário Logado");
-      }*/
+      }
       $this->companhias[] = $_companhia;
       $usuario = $this->getUser();
       $this->logSist->escrita("Companhia $_companhia criada pelo usuario $usuario");
