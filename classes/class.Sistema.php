@@ -36,14 +36,13 @@
       return self::$instance;
     }
     
-    public function criaCalendário($_1stdia, $_numdias){
-    $rotate = $_1stdia;
-        for($i = 1; $i <= $_numdias; $i++){
-          if($rotate = 7){
-            $rotate = 0;
-          }
-          $this->calendario[$i] = new Dia($rotate);
-          $rotate++;
+    public function criaCalendario(){
+    $_numdias = 30;
+    date_default_timezone_set("America/Sao_Paulo");
+    $Dia = date("Y/m/d"); 
+        for($i = 0; $i <=$_numdias; $i++){
+          $resultado = date('Y/m/d', strtotime("+{$i} days",strtotime($Dia)));
+          $this->calendario[$i] = new Dia($resultado);
         }
     }
 

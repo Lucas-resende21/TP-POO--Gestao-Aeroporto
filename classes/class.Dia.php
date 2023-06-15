@@ -6,8 +6,10 @@
     private $viagens = array();
     private $data;
 
-    public function __construct($_DiaDaSemana, $_data){
-      switch ($_DiaDaSemana) {
+    public function __construct($_data){
+      $this->data = $_data;
+      $this->DiaDaSemana = date('w', strtotime($_data));
+      switch ($this->DiaDaSemana){
         case 0:
           $this->DiaDaSemana = "Domingo";
           break;
@@ -32,7 +34,6 @@
         default:
           throw new Exception("Dia invalido");
       }
-      $this->dia = $_dia;
     }
 
     public function setViagem($_Voo){
