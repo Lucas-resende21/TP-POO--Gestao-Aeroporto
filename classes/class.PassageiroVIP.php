@@ -41,7 +41,7 @@
       }
     }
 
-    public function alteraPassagem(Passagem $p, $_bagagens, $_assento, $_origem, $_destino,            $_distancia)
+    public function alteraPassagem(Passagem $p, $_bagagens, $_assento, $_origem, $_destino, $_distancia)
     {
       for($i=0; i<sizeof($this->_passagens); $i++)
       {

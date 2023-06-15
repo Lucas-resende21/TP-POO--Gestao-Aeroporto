@@ -73,6 +73,18 @@
       }
     }
 
+    public function assentosDisponiveis(){
+      $_count = 0;
+      for($i=0; $i<$this->aeronave->getAssentos(); $i++)
+      {  
+        if($this->assentos[$i] == 0)
+        {
+          $_count++;
+        }
+      }
+      return $_count;
+    }
+
     public function adicionaTripulacao($nome, $documento, $CPF, $nacionalidade, $dataDeNascimento, $email,               $CHT, $coordx, $coordy, $companhiaAerea, $aeroportoBase){
       
       $funcionario = new funcionario($nome, $documento, $CPF, $nacionalidade, $dataDeNascimento, $email,                 $CHT, $coordx, $coordy, $companhiaAerea, $aeroportoBase);

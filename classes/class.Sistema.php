@@ -57,7 +57,7 @@
         if($_voo->getFrequencia() == $this->calendario[$i]->getSem()){
             $this->calendario[$i]->setViagem($_voo);
         }elseif($_voo->getFrequencia() == "diario"){
-          $this->calendario[$i]->setViagem($_voo);
+            $this->calendario[$i]->setViagem($_voo);
         }
       }
     }
@@ -150,6 +150,28 @@
     public function getViagens($_i){
       return($this->calendario[$_i]->getViagem());
     }
+
+
+    /* Deve ser fornecido um método para realizar uma consulta/pesquisa por viagens tendo 
+    os parâmetros a seguir:
+    • Aeroporto de origem e destino
+    • Data da viagem
+    • Número de passageiros
+    Essa consulta deve retornar uma lista de possíveis viagens, inclusive com conexões, para 
+    atender o deslocamento total. O valor total de uma opção de trajeto deverá ser exibido, 
+    além dos horários de embarque das viagens. A disponibilidade de assentos deve ser 
+    validada. */
+    public function consultaViagens($_origem, $_destino, $_data, $_numPassageiros){
+      for($i=0; $i<90; $i++)
+      {
+        if($this->voos[$i]->getOrigem() == $_origem)
+          elseif($this->voos[$i]->getDestino() == $_destino)
+            elseif($this->voos[$i]->getData() == $_data)
+              elseif($this->voos[$i]->assentosDisponiveis() >= $_numPassageiros)
+        return $this->voos[$i];
+      }
+    }
+    
 
     public function setUser($_login, $_senha, $_email){
       $this->usuarios[] = new User($_login, $_senha, $_email);
