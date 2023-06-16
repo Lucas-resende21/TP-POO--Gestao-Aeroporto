@@ -4,10 +4,10 @@ class Aeroporto{
     protected $sigla;
     protected $cidade;
     protected $estado;
-    protected $endereço = array();
+    protected $endereço;
 //capturar cidades de destino da classe voo (sprint2)
 
-    public function __construct(string $_sigla, string $_cidade, string $_estado, $_coordx, $_coordy){
+    public function __construct(string $_sigla, string $_cidade, string $_estado, $_endereço){
       if(strlen($_sigla)>3){
         throw new Exception("Sigla inválida");
       }elseif(strlen($_sigla)<3){
@@ -16,8 +16,7 @@ class Aeroporto{
       $this->sigla = $_sigla;
       $this->cidade = $_cidade;
       $this->estado = $_estado;
-      $this->endereço[0] = $_coordx;
-      $this->endereço[1] = $_coordy;
+      $this->endereço = $_endereço;
     }
 
     public function getEndereço(){

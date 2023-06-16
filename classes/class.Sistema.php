@@ -164,11 +164,11 @@
     public function consultaViagens($_origem, $_destino, $_data, $_numPassageiros){
       for($i=0; $i<90; $i++)
       {
-        if($this->voos[$i]->getOrigem() == $_origem)
-          elseif($this->voos[$i]->getDestino() == $_destino)
-            elseif($this->voos[$i]->getData() == $_data)
-              elseif($this->voos[$i]->assentosDisponiveis() >= $_numPassageiros)
-        return $this->voos[$i];
+        if($this->voos[$i]->getOrigem() == $_origem){
+        }elseif($this->voos[$i]->getDestino() == $_destino){
+          }elseif($this->voos[$i]->getData() == $_data){
+            }elseif($this->voos[$i]->assentosDisponiveis() >= $_numPassageiros){
+              return $this->voos[$i];}
       }
     }
     
