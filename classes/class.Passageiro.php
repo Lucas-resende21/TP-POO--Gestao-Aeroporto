@@ -1,8 +1,10 @@
 <?php
+include_once("class.Sistema.php");
 include_once("class.Pessoa.php");
 include_once("class.Cliente.php");
 include_once("class.Passagem.php");
 include_once("class.Voo.php");
+include_once("class.Companhia.php");
 
 class Passageiro extends Pessoa
 {
@@ -14,60 +16,39 @@ class Passageiro extends Pessoa
     }
 
     private $status;
-    private $passagem;
+    private $Passagem;
     private $histDeVoos = array();
+    private $passagensPassageiro = array();
 
     public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email)
     {
         parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
-        
     }
 
-    public function cancelaPassagem(Passagem $p) //implementar custo de cancelamento caso passageiro comum
+    public function cancelaPassagem(Passagem $p, Companhia $c) //implementar custo de cancelamento caso passageiro comum
     {
-        for ($i = 0; i < sizeof($this->_passagens); $i++) {
-            if ($this->_passagens[$i] == $p) {
-              unset($this->_passagens[$i]);
-              print_r("Passagem cancelada.");
-              print_r("Valor do cancelamento: R$80,00");
-              $p->setPreco(80);
-              echo ("</p>");
-              break;
-            }
-        }
-    }
-
-    public function alteraPassagem(Passagem $p, $_bagagens, $_assento, $_origem, $_destino, $_distancia)
-    {
-      for($i=0; i<sizeof($this->_passagens); $i++)
-      {
-        if($this->_passagens[$i] == $p)
+        if($this->Passagem == $p)
         {
-          _passagens[$i].setAtributos(_bagagens, _assento, _origem, _destino, distancia);
-          //istaDeObjetos.get(indice).setAtributoQualquer("Valor Novo");
-        }
-      }
+            print_r("Passagem cancelada.");
+            print_r("Valor do cancelamento: R$80,00");
+            $p->setPrecoCancelamento(80);
+            $this->Passagem == NULL;
+        }    
+        echo ("</p>");
     }
 
-
-    public function alterarPassagem(Passageiro $passageiro, Voo $voo, $valor)
+    public function alteraPassagem(Passagem $p, Companhia $c)
     {
-        $passageiroVIP = $this->verificarStatusVIP($passageiro); // Método da classe separada para validar se o passageiro é VIP
-
-        if ($passageiroVIP) {
-            // Implementar a lógica para remarcar ou cancelar a passagem sem cobrar do passageiro
-
-            $this->status = "Passagem alterada (VIP)";
-        } else {
-            // Implementar a lógica para cobrar o valor da passagem do passageiro
-
-            $this->status = "Passagem alterada (Valor cobrado: " . $valor . ")";
-        }
+        $Passagem = $p;
+        print_r("Passagem alterada.");
+        print_r("Valor do alteração: R$25,00");
+        $Passagem->setPrecoAlteracao(25);
+        echo ("</p>");
     }
 
     public function check_in(Voo $v)
     {
-        $horarioPartida = new DateTime($v->getHorarioPartida());
+        $horarioPartida = new DateTime($v->getHorarioP());
         $horarioAtual = new DateTime();
         $limiteCheckin = $horarioPartida->sub(new DateInterval('PT30M')); // Subtrai 30 minutos do horário de partida
 
@@ -90,17 +71,18 @@ class Passageiro extends Pessoa
         } else {
             $this->status = "NO SHOW";
         }
-        $this->histDeVoos[] = $this->passagem;
+        $this->histDeVoos[] = $this->Passagem;
     }
 
     public function atribuiPassagem($_passagem)
     {
-        $this->passagem = $_passagem;
+        $this->Passagem = $_passagem;
         $this->status = "Passagem comprada";
     }
 
-    public function getPassagem(){
-        return $this->passagem;
+    public function validaVIP()
+    {
+        return false;
     }
 }
 

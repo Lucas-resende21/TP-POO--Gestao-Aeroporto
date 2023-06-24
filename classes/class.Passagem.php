@@ -53,21 +53,31 @@
     }
 
     
-    public function calculaPreco(Passageiro $p, $preco, $bagagens, $distancia)
+    public function calculaPreco(Passageiro $p, Voo $v, $preco, $bagagens)
     {
       if($p->validaVIP())
       {
-        $this->preco = (($bagagens-1)*(50*0.5)) + ($distancia*0.02);
+        $this->preco = (($bagagens-1)*(50*0.5)) + (($v->getDistancia())*0.02);
       }
       else
       {
-        $this->preco = ($bagagens)*(50) + ($distancia*0.02);
+        $this->preco = ($bagagens)*(50) + (($v->getDistancia())*0.02);
       }
     }
 
     public function getPreco($preco)
     {
       return $this->preco;
+    }
+
+    public function setPrecoCancelamento($_preco)
+    {
+      $this->preco == $_preco;
+    }
+
+    public function setPrecoAlteracao($_preco)
+    {
+      $this->preco += $_preco;
     }
 
     public function setPreco($_preco)
@@ -90,6 +100,3 @@
 
     public function __destruct(){ }
   }
-
-    
-  
