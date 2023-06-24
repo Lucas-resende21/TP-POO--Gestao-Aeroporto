@@ -1,8 +1,14 @@
 # TP-POO--Gestao-Aeroporto
 ## Universidade Federal de Minas Gerais
-Sistema de gestão de aeroportos criado para a disciplina de Programação Orientada a objetos da UFMG. Implementado em php.
-<br>
-Scrum Planilha:
+Sistema de gestão de aeroportos em php criado para a disciplina de Programação Orientada a objetos da UFMG.<br>
+O projeto foi realizado utilizando a metodologia SCRUM.<Br>
+Autores:<br>
+Lucas Araújo Pinto Resende <br>
+Luiz Kevenin do Nascimento Borges <br>
+Yaggo Victor Cardoso de Souza Teixeira <br>
+Daniel de Maria Maforte<br>
+Isabel Soier do Nascimento<br>
+Planilha Scrum:
 <br>
 https://docs.google.com/spreadsheets/d/1aljICFR4Iio0E0FOYA-wmjhRrnLFEQVKBPpF7cRLoZg/edit?usp=sharing
 <br>
