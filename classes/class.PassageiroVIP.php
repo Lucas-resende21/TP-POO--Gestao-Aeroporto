@@ -14,31 +14,15 @@
     private $categoria;
     private $pontos;
 
+    public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email, $_numRegistro, $_programaDeMilhagem){
+      parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
+      $this->numRegistro = $_numRegistro;
+      $this->programaDeMilhagem = $_programaDeMilhagem;
+    }
+
     public function cancelaPassagem(Passagem $p)
     {
-      for($i=0; i<sizeof($this->_passagens); $i++)
-      {
-        if($this->_passagens[$i] == $p)
-        {
-          unset($this->_passagens[$i]);
-            print_r("Passagem cancelada.");
-            //print_r("Valor do cancelamento: R$0,00");
-            /*if(programaDeMilhagem == )
-            {
-              setPreco(120); 
-              print_r("Passagem cancelada.");
-              print_r("Valor do cancelamento: R$120,00");
-            }    
-            else
-            {
-              setPreco(0);
-              print_r("Passagem cancelada.");
-              print_r("Valor do cancelamento: R$120,00");
-            }
-          echo ("</p>");
-          break;*/
-        }
-      }
+      
     }
 
     public function alteraPassagem(Passagem $p, $_bagagens, $_assento, $_origem, $_destino, $_distancia)
@@ -51,6 +35,17 @@
           //istaDeObjetos.get(indice).setAtributoQualquer("Valor Novo");
         }
       }
+    }
+
+    public function confirmaEmbarque($embarque)
+    {
+        if ($embarque) {
+            $this->status = "Embarque realizado";
+            $this->pontos += 7500;
+        } else {
+            $this->status = "NO SHOW";
+        }
+        $this->histDeVoos[] = $this->passagem;
     }
 
     public function getNumRegistro()

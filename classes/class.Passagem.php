@@ -28,29 +28,28 @@
       // E depois uma segunda function pra verificar se os assentos escolhidos estao disponiveis
     }    
 
-    public function criaEscala($voos, $assento)
-    {
+    public function criaEscala($voos, $assento){
+      //voo unico
       for($i = 0; $i < count($voos); $i++){
-        if($voos[$i]->getOrigem() == $this->origem && $voos[$i]->getDestino() == $this->destino){
+        if($this->origem == $voos[$i]->getOrigem() && $this->destino == $voos[$i]->getDestino()){
           $this->voosP[] = $voos[$i];
           $voos[$i]->setAssento($assento);
-          return 1;
-        }
-        elseif($voos[$i]->getOrigem() == $this->origem && $voos[$i]->getDestino() != $this->destino){
-          $this->voosP[] = $voos[$i];
-          $voos[$i]->setAssento($assento);
-          for($i = 0; $i < count($voos); $i++){
-            if($voos[$i]->getOrigem() == $this->voosP[0]->getDestino() && $voos[$i]->getDestino() == $this->destino){
-              $this->voosP[] = $voos[$i];
-              $voos[$i]->setAssento($assento);
-              break;
-            }else{
-              throw new Exception("Rota inexistente.");
-            }
-          }  
           return 1;
         }
       }
+      //caso for escala
+      for($i = 0; $i < count($voos); $i++){
+        for($ii = 0; $ii < count($voos); $ii++){
+          if($this->origem == $voos[$i]->getOrigem() && $voos[$i]->getDestino() == $voos[$ii]->getOrigem() && $voos[$ii]->getDestino() == $this->destino){
+            array_push($this->voosP, $voos[$i]);
+            array_push($this->voosP, $voos[$ii]);
+            $this->voosP[0]->setAssento($assento);
+            $this->voosP[1]->setAssento($assento);
+            return 1;
+          }
+        }
+      }
+      throw new Exception("Rota inexistente.");
     }
 
     
@@ -73,12 +72,20 @@
 
     public function setPreco($_preco)
     {
-      $this->preco == _preco;
+      $this->preco == $_preco;
     }
 
     static public function getFilename() 
     {
       return get_called_class()::$local_filename;
+    }
+
+    public function getOrigem(){
+      return $this->origem;
+    }
+
+    public function getDestino(){
+      return $this->destino;
     }
 
     public function __destruct(){ }

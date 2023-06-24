@@ -47,11 +47,15 @@ class Cliente extends Pessoa{
 
   public function totalPassagens($compraTotal)
   {
-    for($i=0; $i<sizeof($this->passagens); $i++)
+    for($i=0; $i<sizeof($this->histCompras); $i++)
     {
-      $compraTotal += $this->passagens[$i]->getPreco();  
+      $compraTotal += $this->histCompras[$i]->getPreco();  
     }
     return $compraTotal;
+  }
+
+  public function getPassagem(){
+    return $this->histCompras[count($this->histCompras)];
   }
 
   public function __destruct(){}

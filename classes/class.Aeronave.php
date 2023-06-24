@@ -25,7 +25,6 @@
         throw new Exception("Registro invalido");
       }
       
-      $ii;
       for($ii=0;$ii<3;$ii++){
         $teste3 = ord($_reg[3+$ii]);
         if($teste3<65 || $teste3>90){
@@ -40,7 +39,7 @@
     }
 
     public function getAssentos(){
-      return $this->capPassageiros - 4;
+      return $this->capPassageiros;
     }
 
     static public function getFilename() {

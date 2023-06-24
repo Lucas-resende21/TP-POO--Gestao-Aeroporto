@@ -98,6 +98,10 @@ class Passageiro extends Pessoa
         $this->passagem = $_passagem;
         $this->status = "Passagem comprada";
     }
+
+    public function getPassagem(){
+        return $this->passagem;
+    }
 }
 
     //Deve ser possível acessar o histórico de vôos de um passageiro em ordem cronológica, talvez usando include_once

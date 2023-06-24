@@ -41,11 +41,8 @@
     
 
     public function adicionaAeronave(string $fab, string $mod, int $capPsg, float $capCarg, string $reg) {
-      try{
+      
       $aeronave = new Aeronave($fab, $mod, $capPsg, $capCarg, $reg);
-      }catch (Exception $e){
-        echo 'Exceção capturada', $e->getMessage(), "\n";
-      }
       $this->_aeronaves[] = $aeronave;
     }
 
@@ -94,6 +91,10 @@
 
     public function getSigla(){
       return $this->_sigla;
+    }
+
+    public function getNome(){
+      return $this->_nome;
     }
     
     static public function getFilename() {

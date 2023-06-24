@@ -25,7 +25,7 @@ class Funcionario extends Pessoa {
     }
   
     public function getEndereco() {
-      return($this->coordx,$this->coordy);
+      return $this->endereço;//($this->coordx, $this->coordy);
     }
 
     public function setEndereco($_coordx, $_coordy){

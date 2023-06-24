@@ -12,9 +12,10 @@
       parent::__construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa);
       $this->status = $_status;
     }
-    private function calculaDuracao($_duracao, $_horarioPartida, $horarioChegada)
+    private function calculaDuracao($_horarioPartida, $_horarioChegada)
     {
       $_duracao = $_horarioChegada - $_horarioPartida;
+      return $_duracao;
     }
 
     public function __destruct() {}
