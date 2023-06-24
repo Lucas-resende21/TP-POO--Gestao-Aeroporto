@@ -13,10 +13,9 @@
     protected $destino;
     protected $aeronave;
     protected $assentos = array();
-    protected $passagens = array();
+    //protected $passagens = array();
     protected $tripulacao = array();
     protected $freqSem;
-    protected $distancia = 100000;
     protected $tarifa;
 
 
@@ -24,20 +23,19 @@
     {  
       
       if(strlen($_codigoDeVoo)>6){
-        throw new Exception("Codigo de voo maior do que o permitido");
+        throw new Exception("Codigo de voo maior do que o permitido\n");
       }elseif(strlen($_codigoDeVoo)<6){
-        throw new Exception("Codigo de voo menor do que o permitido");
+        throw new Exception("Codigo de voo menor do que o permitido\n");
       }if($_codigoDeVoo[0] != $_sigla[0]){
-        throw new Exception("Codigo não bate com a Sigla[0]");
+        throw new Exception("Codigo não bate com a Sigla[0]\n");
       }if($_codigoDeVoo[1] != $_sigla[1]){
-        throw new Exception("Codigo não bate com a Sigla[1]");
+        throw new Exception("Codigo não bate com a Sigla[1]\n");
       }
       
-      $ii;
       for($ii=0;$ii<2;$ii++){
         $teste3 = ord($_codigoDeVoo[$ii]);
         if($teste3<65 || $teste3>90){
-          throw new Exception("Codigo tem que ser letra maiuscula");
+          throw new Exception("Codigo tem que ser letra maiuscula\n");
         }  
       }
       
@@ -54,7 +52,7 @@
     public function setAeronave(Aeronave $_aeronave){
       $this->aeronave = $_aeronave;
       for($i = 0; $i < $_aeronave->getAssentos(); $i++){
-        $this->assentos[] = 0;
+        $this->assentos[$i] = 0;
       }
     }
 
@@ -64,12 +62,9 @@
       }elseif($_assento < 0){
         throw new Exception("Assento invalido");
       }elseif($this->assentos[$_assento] != 0){
-        //print_r($this->assentos[$_assento]);
         throw new Exception("Assento ocupado");
       }else{
         $this->assentos[$_assento] = 1;
-        //$passagem = new Passagem($_bagagens, $_assento, $_origem, $_destino, $_distancia);
-        //return($passagem);
       }
     }
 
@@ -89,7 +84,7 @@
       
       $funcionario = new funcionario($nome, $documento, $CPF, $nacionalidade, $dataDeNascimento, $email,                 $CHT, $coordx, $coordy, $companhiaAerea, $aeroportoBase);
 
-      $this->tripulação[] = $funcionario; 
+      $this->tripulacao[] = $funcionario; 
     }
 
     public function getDuracao(){
@@ -120,10 +115,6 @@
     
     public function getFrequencia(){
       return $this->freqSem;
-    }
-
-    public function getDistancia(){
-      return $this->distancia;
     }
 
     public function getTarifa(){

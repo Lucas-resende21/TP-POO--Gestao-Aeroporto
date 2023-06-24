@@ -18,6 +18,7 @@
     private $passagens = array();
     private $companhias = array();
     private $usuarios = array();
+    private $voos = array();
     private $sessao;
     private Log $logSist;
     public static $instance;
@@ -42,38 +43,43 @@
     $Dia = date("Y/m/d"); 
         for($i = 0; $i <=$_numdias; $i++){
           $resultado = date('Y/m/d', strtotime("+{$i} days",strtotime($Dia)));
-          $this->calendario[$i] = new Dia($resultado);
+          $dia = new Dia($resultado);
+          $this->calendario[$i] = $dia;
         }
     }
 
     public function AddVoosCompanhia($_companhia){
-      for($i = 0; $i<sizeof($_companhia->getVoos()); $i++){
-        $this->AddVooCalendario($_companhia->getVoo());
+      for($i = 0; $i < sizeof($_companhia->getVoos()); $i++){
+        $this->AddVooCalendario($_companhia->getVoo($i));
       }
     }
 
-    public function AddVooCalendario($_voo){
-      for($i = 1; $i <= 30; $i++){
+    public function AddVooCalendario(Voo $_voo){
+      for($i = 0; $i <= 30; $i++){
         if($_voo->getFrequencia() == $this->calendario[$i]->getSem()){
             $this->calendario[$i]->setViagem($_voo);
         }elseif($_voo->getFrequencia() == "diario"){
             $this->calendario[$i]->setViagem($_voo);
+        }elseif($_voo->getFrequencia() != "diario" && $_voo->getFrequencia() < 0 && $_voo->getFrequencia() > 6){
+          throw new Exception("Frequência errada");
         }
       }
+      $voos[] = $_voo;
     }
 
     public function criaCompanhia(Companhia $_companhia){
       if($this->sessao == 'NULL'){
         throw new Exception("Não há um usuário Logado");
       }
+      $nome = $_companhia->getNome();
       $this->companhias[] = $_companhia;
       $usuario = $this->getUser();
-      $this->logSist->escrita("Companhia $_companhia criada pelo usuario $usuario");
+      $this->logSist->escrita("Companhia $nome criada pelo usuario $usuario");
     }
 
     public function removeCompanhia(Companhia $_companhia){
-      for($i = 0; $i < $companhias->count(); $i++){
-        if($companhias[$i] == $_companhia){
+      for($i = 0; $i < count($this->companhias); $i++){
+        if($this->companhias[$i] == $_companhia){
           unset($companhias[$i]);
         }
       }
@@ -83,20 +89,24 @@
       print_r($this->companhias); 
     }
 
+    public function getCompanhia($i){
+      return $this->companhias[$i];
+    }
+
     public function criaAeroporto(Aeroporto $_aeroporto){
       $this->aeroportos[] = $_aeroporto;
     }
 
     public function removeAeroporto(Aeroporto $_aeroporto){
-      for($i = 0; $i < $aeroportos->count(); $i++){
-        if($aeroportos[$i] == $_aeroporto){
+      for($i = 0; $i < count($this->aeroportos); $i++){
+        if($this->aeroportos[$i] == $_aeroporto){
           unset($aeroportos[$i]);
         }
       }
     }
     
     public function getAeroportos(){
-      print_r($this->$aeroportos);
+      return $this->aeroportos;
     }
     
     public function criaCliente(Cliente $_cliente){
@@ -104,8 +114,8 @@
     }
 
     public function removeCliente(Cliente $_cliente){
-      for($i = 0; $i < $clientes->count(); $i++){
-        if($clientes[$i] == $_cliente){
+      for($i = 0; $i < count($this->clientes); $i++){
+        if($this->clientes[$i] == $_cliente){
           unset($clientes[$i]);
         }
       }
@@ -116,15 +126,19 @@
     }
 
     public function removePassageiro(Passageiro $_passageiro){
-      for($i = 0; $i < $passageiros->count(); $i++){
+      for($i = 0; $i < count($this->passageiros); $i++){
         if($this->passageiros[$i] == $_passageiro){
           unset($this->passageiros[$i]);
         }
       }
     }
+
+    public function getPassageiros(){
+      return $this->passageiros;
+    }
     
     public function getClientes(){
-      print_r($this->clientes);
+      return $this->clientes;
     }
 
     public function criaPassagem(Passagem $_passagem){
@@ -132,8 +146,8 @@
     }
 
     public function removePassagem(Passagem $_passagem){
-      for($i = 0; $i < $passagens->count(); $i++){
-        if($passagens[$i] == $_passagem){
+      for($i = 0; $i < count($this->passagens); $i++){
+        if($this->passagens[$i] == $_passagem){
           unset($passagens[$i]);
         }
       }

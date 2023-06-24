@@ -2,29 +2,24 @@
 
 include_once("passageiro.php");
 include_once("class.Voo.php");
-include_once("class.Passagem.php")
+include_once("class.Passagem.php");
 include_once("persist.php");
 
-public function setNome($_nome){
-  echo $this->_nome;
-}
+Class CartaoEmbarque{
+  private $nome;
+  private $origem;
+  private $destino;
+  private $assento;
+  private $horarioEmbarque;
+  private $horarioViagem;
 
-public function setOrigem($origem){
-  print ($origem);
-}
+  public function imprimeCartao(){
+    echo "Passageiro: ",$this->nome ,"\nOrigem: ", $this->origem, "\nDestino: ", $this->destino, "\nHorario de embarque: ", $this->horarioEmbarque, "\nHorario da Viagem: ", $this->horarioViagem, "\nAssento: ", $this->assento;
+  }
 
-public function setDestino($destino){
-  print ($destino);
-}
-
-public function setHorarioEmbarque($embarque){
-  print ($embarque)
-}
-
-public function setHorarioPartida($_Viagem){  
-   print ($_Viagem->getHorarioP());
-}
-
-public function setAssento($assento){
-  print ($assento);
+  public function __construct(Passageiro $p){
+    $this->nome = $p->getNome();
+    $this->origem = $p->getPassagem()->getOrigem();
+    $this->destino = $p->getPassagem()->getDestino();
+  }
 }
