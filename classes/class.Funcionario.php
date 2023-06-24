@@ -1,16 +1,20 @@
 <?php
 include_once("class.Pessoa.php");
+include_once("class.Log.php");
+include_once("class.Sistema.php");
+
 
 class Funcionario extends Pessoa {
     private $CHT;
     private $endereço = array();
     private $companhiaAerea;
     private $aeroportoBase;
+    private $endereco;
 
-    public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email, $_CHT, $_coordx, $_coordy, $_companhiaAerea, $_aeroportoBase) {
+    public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email, $_CHT, $_endereco, $_companhiaAerea, $_aeroportoBase) {
         parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
         $this->setCHT($_CHT);
-        $this->setEndereco($_coordx, $_coordy);
+        $this->endereco = $_endereco;
         $this->companhiaAerea = $_companhiaAerea;
         $this->aeroportoBase = $_aeroportoBase;
     }
@@ -25,7 +29,7 @@ class Funcionario extends Pessoa {
     }
   
     public function getEndereco() {
-      return($this->coordx,$this->coordy);
+      return($this->endereco);
     }
 
     public function setEndereco($_coordx, $_coordy){

@@ -1,6 +1,6 @@
 <?php
     require_once('global.php');
-    if(1){
+    if(0){
       $sistema = new Sistema();
       $sistema->setUser("Lucas", "abacate", "lucasaraujoresende21@gmail.com");
       $sistema->login("Lucas", "abacate");
@@ -120,7 +120,7 @@
       print_r($sistemas);
     }
 
-    if(0){ //Testes - Lucas -----------------------------------------------------------------
+    if(1){ //Testes - Lucas -----------------------------------------------------------------
       //Sprint 1 -
       echo("Opa, tá funcionando");
       $Azul= new Companhia("Azul", "AD", "Azul L.A", "102345671234198", "AD");

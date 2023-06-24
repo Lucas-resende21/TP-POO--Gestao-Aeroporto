@@ -1,5 +1,6 @@
 <?php
   include_once("persist.php");
+  include_once("class.Funcionario.php");
 
   class Rota extends persist{
     
@@ -12,14 +13,16 @@
     private $distancia;
     private $HorarioPartida;
     private $Aeroporto;
+    private $funcionarios = array();
 
     public function __construct($_aeroporto){
       $this->Aeroporto = $_aeroporto;
-      $this->addEndereço($_aeroporto->getEndereço());
+      $this->trajeto[] = $_aeroporto->getEndereço();
     }
 
-    public function addEndereço($_endereço){
-      $this->trajeto[] = $_endereço;
+    public function addFuncionario($_funcionario){
+      $this->funcionarios[] = $_funcionario;
+      $this->trajeto[] = $_funcionario->getEndereco();
       $this->CalculaDistancia();
     }
 
@@ -32,7 +35,7 @@
         'destination' => $this->trajeto[$i+1], // Ufmg
         'key' => 'AIzaSyDptEOEPM1XmE6FTdEs3UpiJR-yAaI0krA'
       );
-      $url .= '?' . +http_build_query($params);
+      $url .= '?' . http_build_query($params);
       $curl = curl_init();
       curl_setopt($curl, CURLOPT_URL, $url);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -46,16 +49,37 @@
       echo 'Erro na solicitação: ' . $data['status'];
       }
       curl_close($curl);
-      $this->distancia = $this->distancia + $valor_float; 
+      $this->distancia = $this->distancia + $valor_float;
       }
     }
     public function CalculaDuracao(){
-      $this->Duração = $this->distancia/18;
+      $_segundos = ($this->distancia/18)*3600;
+      $this->Duração = $this->converterSegundosParaHora($_segundos);
       return($this->Duração);
     }
+
+    public function converterSegundosParaHora($_segundos) {
+    $horas = floor($_segundos / 3600);
+    $minutos = floor(($_segundos % 3600) / 60);
+    $segundos = $_segundos % 60;
+
+    return sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
+    }
+
+    public function subtrairHoras($_hora1, $_hora2) {
+    $data1 = DateTime::createFromFormat('H:i:s', $_hora1);
+    $data2 = DateTime::createFromFormat('H:i:s', $_hora2);
+    
+    $intervalo = $data1->diff($data2);
+    
+    $resultado = $intervalo->format('%H:%i:%s');
+    
+    return $resultado;
+    }
+    
     public function setHorarioPartida($_Viagem){
-      $this->CalculaDuração();
-      $this->HorarioPartida = $_Viagem->getHorarioP()-$this->Duração-90;  
+      $this->HorarioPartida = $this->subtrairHoras($_Viagem->getHorarioP(), $this->CalculaDuracao());
+      return $this->HorarioPartida;
     }
 
     public function getDistancia(){
