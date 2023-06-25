@@ -65,7 +65,7 @@ class Passageiro extends Pessoa
         }
     }
 
-    public function confirmaEmbarque($embarque)
+    public function confirmaEmbarque(BOOL $embarque)
     {
         if ($embarque) {
             $this->status = "Embarque realizado";
@@ -84,7 +84,12 @@ class Passageiro extends Pessoa
     public function getPassagem(){
         return $this->passagem;
     }
+    
+    public function imprimeCartao(){
+        print_r($this->cartaoDeEmbarque);
+    }
 }
+
 
     //Deve ser possível acessar o histórico de vôos de um passageiro em ordem cronológica, talvez usando include_once
 

@@ -147,10 +147,11 @@
       
 
     //cliente realizando a compra de passagem
-    $cliente1 = new Cliente("Neymar Jr", "14546132", "76529069471", "Brasileiro", "05/02/1992", "neymarjr@gmail.com");
-    $sistema->criaCliente($cliente1);
-    $passageiro1 = new PassageiroVIP("Luiz Gonzaga", "72486349", "15789345789", "Brasileiro", "13/12/1912", "luizgonzaga@gmail.com", "45687", $companhia2->getPlanoDeMilhagem());
-    $sistema->criaPassageiro($passageiro1);
+      $cliente1 = new Cliente("Neymar Jr", "14546132", "76529069471", "Brasileiro", "05/02/1992", "neymarjr@gmail.com");
+      $sistema->criaCliente($cliente1);
+      $passageiro1 = new PassageiroVIP("Luiz Gonzaga", "72486349", "15789345789", "Brasileiro", "13/12/1912", "luizgonzaga@gmail.com", "45687", $companhia2->getPlanoDeMilhagem());
+      $sistema->criaPassageiro($passageiro1);
+
 
     //consulta viagem deve ser usado com os parametros que o cliente quer para comprar a viagem, por conta do erro do calendário é impossivel agora
       //dentro de compraPassagem deve ser chamado o consultaViagem
@@ -160,9 +161,14 @@
     
     //realizando o CHECK-IN e imprimindo cartão de embarque
       $passageiro1->check_in(0);
+      $passageiro1->imprimeCartao();
+      $passageiro1->confirmaEmbarque(True);
 
     //realizando a compra da viagem de volta pela Latam
-
+      $cliente1->compraPassagem($afonsopena->getCidade(), $confins->getCidade(), "1100", "39", "2", $passageiro1, $voosLatam);
+      $passageiro1->check_in(0);
+      $passageiro1->imprimeCartao();
+      $passageiro1->confirmaEmbarque(True);
 
       //Implementando Rota 
       $confins_UFMG = new Rota($confins);
@@ -201,18 +207,22 @@
       */
 
     //printando as passagens dos passageiros
-      /*
+      
       $passageiros = $sistemas[0]->getPassageiros();
       print_r($passageiros);
-      */
+      
 
     //printando as viagens
-      $calendario = $sistemas[0]->getCalendario();
+      /*$calendario = $sistemas[0]->getCalendario();
       echo "Viagens nos próximos 30 dias:\n";
-      /*for($i = 0; $i < count($calendario); $i++){
+      for($i = 0; $i < count($calendario); $i++){
         $viagem = $sistemas[0]->getViagens($i);
         print_r($viagem);
       }
       echo "\n";*/
+
+
+    //seguindo o roteiro de testes
+      
   }
 }
