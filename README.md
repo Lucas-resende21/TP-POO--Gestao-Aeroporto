@@ -3,7 +3,7 @@
 Sistema de gestão de aeroportos em php criado para a disciplina de Programação Orientada a objetos da UFMG.<br>
 O projeto foi realizado utilizando a metodologia SCRUM.<Br>
 Foram utilizados no projeto:<br>
-- Padrão de projeto ( Singleton ) <br>
+- Padrão de projeto Singleton na classe Sistema <br>
 - Api Directions <br>
 - Api Geocoding <br>
 
@@ -19,3 +19,4 @@ Yaggo Victor Cardoso de Souza Teixeira <br>
 Daniel de Maria Maforte<br>
 Isabel Soier do Nascimento<br>
 
+[Diagrama de Classes TP POO.pdf](https://github.com/Lucas-resende21/TP-POO--Gestao-Aeroporto/files/11858548/Diagrama.de.Classes.TP.POO.pdf)
