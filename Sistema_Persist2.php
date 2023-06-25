@@ -17,11 +17,11 @@
       $piloto = new Funcionario("Lucas", "09424656602", "09424656602", "Brasileiro", "06/03/2003", "lucasaraujoresende21@gmail.com", "2578465057", "Rua Professor Kálman Sibalszky, 194 - Garças, Belo Horizonte - MG", $companhia1, $confins);
       $viagem = new Viagem($BHRJ->getDuracao(), $BHRJ->getHorarioP(), $BHRJ->getHorarioC(), $BHRJ->getCodigo(), $BHRJ->getOrigem(), $BHRJ->getDestino(), $BHRJ->getSigla(), $BHRJ->getFrequencia(), $BHRJ->getTarifa(), "pendente");
       // Parte q faz contato cm a api do google
-      /*$confins_UFMG->addFuncionario($piloto);
+      $confins_UFMG->addFuncionario($piloto);
       echo($confins_UFMG->getDistancia() . "\n");
       echo($confins_UFMG->calculaDuracao() . "\n");
       echo($confins_UFMG->setHorarioPartida($viagem) . "\n");
-      */
+      
       print_r($sistema->getLogSist());
       echo("\n");
       $teste = Sistema::getInstance()->getUser();
