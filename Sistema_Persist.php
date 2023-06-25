@@ -160,10 +160,13 @@
     //realizando o CHECK-IN e imprimindo cartão de embarque
       $passageiro1->check_in(0);
       $passageiro1->imprimeCartao();
-      $passageiro1->confirmaEmbarque();
+      $passageiro1->confirmaEmbarque(True);
 
     //realizando a compra da viagem de volta pela Latam
-      $cliente1->compraPassagem($confins->getCidade(), $afonsopena->getCidade(), "1100", "75", "2", $passageiro1, $voosLatam)
+      $cliente1->compraPassagem($afonsopena->getCidade(), $confins->getCidade(), "1100", "39", "2", $passageiro1, $voosLatam);
+      $passageiro1->check_in(0);
+      $passageiro1->imprimeCartao();
+      $passageiro1->confirmaEmbarque(True);
 
       //Implementando Rota 
       $confins_UFMG = new Rota($confins);

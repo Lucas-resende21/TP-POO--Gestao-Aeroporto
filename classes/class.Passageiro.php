@@ -65,7 +65,7 @@ class Passageiro extends Pessoa
         }
     }
 
-    public function confirmaEmbarque($embarque)
+    public function confirmaEmbarque(BOOL $embarque)
     {
         if ($embarque) {
             $this->status = "Embarque realizado";
