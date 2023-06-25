@@ -7,6 +7,7 @@ Foram utilizados no projeto:<br>
 - Api Directions <br>
 - Api Geocoding <br>
 
+Há uma variável estática 'API KEY' na classe Sistema onde a key do usuário deve ser inserida.<br> 
 Planilha Scrum:<br>
 https://docs.google.com/spreadsheets/d/1aljICFR4Iio0E0FOYA-wmjhRrnLFEQVKBPpF7cRLoZg/edit?usp=sharing<br>
 Diagrama de Classes:<br>
