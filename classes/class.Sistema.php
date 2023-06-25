@@ -22,7 +22,7 @@
     private $sessao;
     public Log $logSist;
     public static $instance;
-    public static $API_KEY = "AIzaSyDptEOEPM1XmE6FTdEs3UpiJR-yAaI0krA";
+    public static $API_KEY = "Sua Key Aqui!!!!";
     
 
 
