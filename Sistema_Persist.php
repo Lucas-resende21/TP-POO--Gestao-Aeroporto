@@ -156,10 +156,6 @@
       //dentro de compraPassagem deve ser chamado o consultaViagem
         $voosLatam = $companhia1->getVoos();
         $voosAzul = $companhia2->getVoos();
-        //$distancia = new Rota($confins);
-        //$distancia->addEndereço($congonhas->getEndereço());
-        //$distancia->addEndereço($afonsopena->getEndereço());
-        //distancia->getDistancia não funciona
         $cliente1->compraPassagem($confins->getCidade(), $afonsopena->getCidade(), "1100", "75", "2", $passageiro1, $voosAzul);
     
     //realizando o CHECK-IN e imprimindo cartão de embarque
@@ -170,12 +166,25 @@
 
       //Implementando Rota 
       $confins_UFMG = new Rota($confins);
-      $piloto = new Funcionario("Lucas", "09424656602", "09424656602", "Brasileiro", "06/03/2003", "lucasaraujoresende21@gmail.com", "2578465057", "Rua Professor Kálman Sibalszky, 194 - Garças, Belo Horizonte - MG", $companhia1, $confins);
+      $piloto = new Funcionario("Lucas", "09424656633", "09424656633", "Brasileiro", "06/03/2003", "lucasaraujoresende21@gmail.com", "2578465057", "Rua Professor Kálman Sibalszky, 194 - Garças, Belo Horizonte - MG", $companhia1, $confins);
       $confins_UFMG->addFuncionario($piloto);
       echo("O Funcionário será pego pela van às ");
       echo($confins_UFMG->setHorarioPartida($sistema->getViagemDia(0,0)));
       echo("\n");
-
+      // Salvando o log em um arquivo txt
+      $array = $sistema->getLogSist();
+      $nomeArquivo = "log.txt";
+      $arquivo = fopen($nomeArquivo, 'w');
+      if ($arquivo) {
+    // Percorre o array e grava cada elemento no arquivo
+        foreach ($array as $elemento) {
+        fwrite($arquivo, $elemento . "\n");
+        }
+        fclose($arquivo);
+        echo "O Log foi gravado com sucesso no arquivo $nomeArquivo.";
+      } else {
+          echo "Erro ao abrir o arquivo $nomeArquivo para escrita.";  
+      }
       $sistema->save();
 
   if( 1 ){
