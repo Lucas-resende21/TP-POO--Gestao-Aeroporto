@@ -189,10 +189,10 @@
       */
 
     //printando as passagens dos passageiros
-      /*
+      
       $passageiros = $sistemas[0]->getPassageiros();
       print_r($passageiros);
-      */
+      
 
     //printando as viagens
       /*$calendario = $sistemas[0]->getCalendario();
