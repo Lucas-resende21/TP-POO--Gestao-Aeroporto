@@ -54,5 +54,9 @@
 
     public function getViagem(){
       return($this->viagens);
-    }     
+    }
+
+    public function getViagemUnica($_i){
+      return($this->viagens[$_i]);
+    }
   }

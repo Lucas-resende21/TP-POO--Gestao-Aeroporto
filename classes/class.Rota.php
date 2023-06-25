@@ -23,6 +23,7 @@
     public function addFuncionario($_funcionario){
       $this->funcionarios[] = $_funcionario;
       $this->trajeto[] = $_funcionario->getEndereco();
+      $this->CalculaDistancia();
     }
 
     

@@ -175,8 +175,12 @@
       return($this->calendario);
     }
 
-    public function getViagens($_i){
+    public function getViagensDia($_i){
       return($this->calendario[$_i]->getViagem());
+    }
+
+    public function getViagemDia($_dia, $_viagem){
+      return($this->calendario[$_dia]->getViagemUnica($_viagem));
     }
 
 
