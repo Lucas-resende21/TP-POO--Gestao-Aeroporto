@@ -1,10 +1,8 @@
 <?php
-include_once("class.Sistema.php");
 include_once("class.Pessoa.php");
 include_once("class.Cliente.php");
 include_once("class.Passagem.php");
 include_once("class.Voo.php");
-include_once("class.Companhia.php");
 
 class Passageiro extends Pessoa
 {
@@ -16,25 +14,27 @@ class Passageiro extends Pessoa
     }
 
     private $status;
-    private $Passagem;
+    private $passagem;
     private $histDeVoos = array();
-    private $passagensPassageiro = array();
 
     public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email)
     {
         parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
+        
     }
 
     public function cancelaPassagem(Passagem $p, Companhia $c) //implementar custo de cancelamento caso passageiro comum
     {
-        if($this->Passagem == $p)
-        {
-            print_r("Passagem cancelada.");
-            print_r("Valor do cancelamento: R$80,00");
-            $p->setPrecoCancelamento(80);
-            $this->Passagem == NULL;
-        }    
-        echo ("</p>");
+        for ($i = 0; i < sizeof($this->_passagens); $i++) {
+            if ($this->_passagens[$i] == $p) {
+              unset($this->_passagens[$i]);
+              print_r("Passagem cancelada.");
+              print_r("Valor do cancelamento: R$80,00");
+              $p->setPreco(80);
+              echo ("</p>");
+              break;
+            }
+        }
     }
 
     public function alteraPassagem(Passagem $p, Companhia $c)
@@ -46,8 +46,9 @@ class Passageiro extends Pessoa
         echo ("</p>");
     }
 
-    public function check_in(Voo $v)
+    public function check_in($i)//tirei o voo p porque o passageiro já tem os voos armazenados na passagem dele
     {
+        $v = $this->passagem->getVoo($i);
         $horarioPartida = new DateTime($v->getHorarioP());
         $horarioAtual = new DateTime();
         $limiteCheckin = $horarioPartida->sub(new DateInterval('PT30M')); // Subtrai 30 minutos do horário de partida
@@ -71,18 +72,17 @@ class Passageiro extends Pessoa
         } else {
             $this->status = "NO SHOW";
         }
-        $this->histDeVoos[] = $this->Passagem;
+        $this->histDeVoos[] = $this->passagem;
     }
 
     public function atribuiPassagem($_passagem)
     {
-        $this->Passagem = $_passagem;
+        $this->passagem = $_passagem;
         $this->status = "Passagem comprada";
     }
 
-    public function validaVIP()
-    {
-        return false;
+    public function getPassagem(){
+        return $this->passagem;
     }
 }
 

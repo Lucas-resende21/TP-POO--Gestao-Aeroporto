@@ -79,8 +79,8 @@
         throw new Exception("Não há um usuário Logado");
       }
       $usuario = Sistema::getInstance()->getUser();
-      $frase1 = $voo->getOrigem()->getCidade();
-      $frase2 = $voo->getDestino()->getCidade();
+      $frase1 = $voo->getOrigem();
+      $frase2 = $voo->getDestino();
       $frase = $frase1." ".$frase2;
       Sistema::getInstance()->logSist->escrita("Voo $frase criado pelo usuario $usuario");
       $this->_voos[] = $voo;
@@ -103,7 +103,9 @@
           }
       }
     }
-
+    public function setPlanoDeMilhagem(){
+      $this->_planoDeMilhagem;
+    }
     public function getSigla(){
       return $this->_sigla;
     }

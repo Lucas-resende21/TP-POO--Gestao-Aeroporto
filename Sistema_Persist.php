@@ -5,6 +5,16 @@
     //Criando sistema e usuario
       $sistema = Sistema::getInstance();
       $sistema->setUser("admin", "0000", "admin@gmail.com");
+
+      try{
+        $companhia1 = new Companhia("Latam", "001", "Latam Airlines do Brasil S.A.", "02012862000160", "LA");
+        $companhia2 = new Companhia("Azul", "002", "Azul Linhas Aéreas Brasileiras S.A.", "09296295000160", "AD");
+        $sistema->criaCompanhia($companhia1);
+        $sistema->criaCompanhia($companhia2);
+      }catch (Exception $e){
+        echo "Não há um usuário Logado\n";
+      }
+
       $sistema->login("admin", "0000");
 
     //Criando companhias
@@ -12,7 +22,13 @@
       $companhia2 = new Companhia("Azul", "002", "Azul Linhas Aéreas Brasileiras S.A.", "09296295000160", "AD");
       $sistema->criaCompanhia($companhia1);
       $sistema->criaCompanhia($companhia2);
-    
+    //criando o programa de milhagem das companhias
+      $planoLatam = new PlanoMilhagem("LatamPass");
+      $planoAzul = new PlanoMilhagem("Tudo Azul");
+
+      $companhia1->setPlanoDeMilhagem($planoLatam);
+      $companhia2->setPlanoDeMilhagem($planoAzul);
+
     //Cadastrando aeronaves
       try{
         $companhia1->adicionaAeronave("Embraer", "175", "180", "600", "PX-RUZ");  
@@ -38,51 +54,96 @@
     //Criação dos voos
       //confins-guarulhos
       try{
-        $voo1 = new Voo("01:50", "07:00", "08:50", "AC1329", $confins->getCidade(), $guarulhos->getCidade(), $companhia2->getSigla(), "diaria");
+        $voo1 = new Voo("01:50", "07:00", "08:50", "AC1329", $confins->getCidade(), $guarulhos->getCidade(), $companhia2->getSigla(), "diario");
         $companhia2->setVoo($voo1);
         $voo1->setAeronave($companhia2->getAeronave(0));
       }catch (Exception $e){
         echo "Código de companhia invalido, corrigido para o código da Azul Linhas Aéreas Brasileiras S.A. \n";
-        $voo1 = new Voo("01:50", "07:00", "08:50", "AD1329", $confins->getCidade(), $guarulhos->getCidade(), $companhia2->getSigla(), "diaria");
+        $voo1 = new Voo("01:50", "07:00", "08:50", "AD1329", $confins->getCidade(), $guarulhos->getCidade(), $companhia2->getSigla(), "diario");
         $voo1->setAeronave($companhia2->getAeronave(0));
         $companhia2->setVoo($voo1);
       }
-      $voo2 = new Voo("01:50", "06:00", "07:50", "LA8745", $confins->getCidade(), $guarulhos->getCidade(), $companhia1->getSigla(), "diaria");
+      $voo1_2 = new Voo("01:50", "00:00", "01:50", "AD2568", $guarulhos->getCidade(), $confins->getCidade(), $companhia2->getSigla(), "diario");
+      $voo2 = new Voo("01:50", "06:00", "07:50", "LA8745", $confins->getCidade(), $guarulhos->getCidade(), $companhia1->getSigla(), "diario");
+      $voo2_2 = new Voo("01:50", "00:00", "01:50", "LA4336", $guarulhos->getCidade(), $confins->getCidade(), $companhia1->getSigla(), "diario");
+      
+      $voo1_2->setAeronave($companhia2->getAeronave(0));
       $voo2->setAeronave($companhia1->getAeronave(0));
+      $voo2_2->setAeronave($companhia1->getAeronave(0));
       
       $companhia1->setVoo($voo2);
+      $companhia1->setVoo($voo2_2);
+      $companhia2->setVoo($voo1_2);
       
       //confins-congonhas
-      $voo3 = new Voo("01:25", "10:00", "11:25", "AD0515", $confins->getCidade(), $congonhas->getCidade(), $companhia2->getSigla(), "diaria");
-      $voo4 = new Voo("01:25", "09:00", "10:25", "LA4124", $confins->getCidade(), $congonhas->getCidade(), $companhia1->getSigla(), "diaria");
+      $voo3 = new Voo("01:25", "10:00", "11:25", "AD0515", $confins->getCidade(), $congonhas->getCidade(), $companhia2->getSigla(), "diario");
+      $voo3_2 = new Voo("01:25", "04:00", "05:25", "AD7156", $congonhas->getCidade(), $confins->getCidade(), $companhia2->getSigla(), "diario");
+
+      $voo4 = new Voo("01:25", "09:00", "10:25", "LA4124", $confins->getCidade(), $congonhas->getCidade(), $companhia1->getSigla(), "diario");
+      $voo4_2 = new Voo("01:25", "02:00", "03:25", "LA6745", $congonhas->getCidade(), $confins->getCidade(), $companhia1->getSigla(), "diario");
       
       $voo4->setAeronave($companhia1->getAeronave(0));
+      $voo4_2->setAeronave($companhia1->getAeronave(0));
       $voo3->setAeronave($companhia2->getAeronave(0));
+      $voo3_2->setAeronave($companhia2->getAeronave(0));
+
       $companhia1->setVoo($voo4);
+      $companhia1->setVoo($voo4_2);
       $companhia2->setVoo($voo3);
+      $companhia2->setVoo($voo3_2);
 
       //guarulhos-galeão
-      $voo5 = new Voo("00:55", "13:00", "13:55", "AD9615", $guarulhos->getCidade(), $galeao->getCidade(), $companhia2->getSigla(), "diaria");
-      $voo6 = new Voo("00:55", "12:00", "12:55", "LA4756", $guarulhos->getCidade(), $galeao->getCidade(), $companhia1->getSigla(), "diaria");
-      
+      $voo5 = new Voo("00:55", "13:00", "13:55", "AD9615", $guarulhos->getCidade(), $galeao->getCidade(), $companhia2->getSigla(), "diario");
+      $voo5_2 = new Voo("00:55", "22:00", "22:55", "AD4526", $galeao->getCidade(), $guarulhos->getCidade(), $companhia2->getSigla(), "diario");
+
+      $voo6 = new Voo("00:55", "12:00", "12:55", "LA4756", $guarulhos->getCidade(), $galeao->getCidade(), $companhia1->getSigla(), "diario");
+      $voo6_2 = new Voo("00:55", "19:00", "19:55", "LA6476", $galeao->getCidade(), $guarulhos->getCidade(), $companhia1->getSigla(), "diario");
+
       $voo6->setAeronave($companhia1->getAeronave(0));
+      $voo6_2->setAeronave($companhia1->getAeronave(0));
       $voo5->setAeronave($companhia2->getAeronave(0));
+      $voo5_2->setAeronave($companhia2->getAeronave(0));
+      
       $companhia1->setVoo($voo6);
+      $companhia1->setVoo($voo6_2);
       $companhia2->setVoo($voo5);
+      $companhia2->setVoo($voo5_2);
 
       //congonhas-afonso pena
-      $voo7 = new Voo("01:00", "15:00", "16:00", "AD4875", $congonhas->getCidade(), $afonsopena->getCidade(), $companhia2->getSigla(), "diaria");
-      $voo8 = new Voo("01:00", "14:00", "15:00", "LA5741", $congonhas->getCidade(), $afonsopena->getCidade(), $companhia1->getSigla(), "diaria");
-      
+      $voo7 = new Voo("01:00", "15:00", "16:00", "AD4875", $congonhas->getCidade(), $afonsopena->getCidade(), $companhia2->getSigla(), "diario");
+      $voo7_2 = new Voo("01:00", "17:00", "18:00", "AD7486", $afonsopena->getCidade(), $congonhas->getCidade(), $companhia2->getSigla(), "diario");
+
+      $voo8 = new Voo("01:00", "14:00", "15:00", "LA5741", $congonhas->getCidade(), $afonsopena->getCidade(), $companhia1->getSigla(), "diario");
+      $voo8_2 = new Voo("01:00", "16:00", "17:00", "LA8475", $afonsopena->getCidade(), $congonhas->getCidade(), $companhia1->getSigla(), "diario");
+
       $voo8->setAeronave($companhia1->getAeronave(0));
+      $voo8_2->setAeronave($companhia1->getAeronave(0));
       $voo7->setAeronave($companhia2->getAeronave(0));
+      $voo7_2->setAeronave($companhia2->getAeronave(0));
+      
       $companhia1->setVoo($voo8);
+      $companhia1->setVoo($voo8_2);
       $companhia2->setVoo($voo7);
+      $companhia2->setVoo($voo7_2);
 
     //criando calendário e registrando viagens
       $sistema->criaCalendario();
       $sistema->AddVooCalendario($voo1);
+      $sistema->AddVooCalendario($voo1_2);
       $sistema->AddVooCalendario($voo2);
+      $sistema->AddVooCalendario($voo2_2);
+      $sistema->AddVooCalendario($voo3);
+      $sistema->AddVooCalendario($voo3_2);
+      $sistema->AddVooCalendario($voo4);
+      $sistema->AddVooCalendario($voo4_2);
+      $sistema->AddVooCalendario($voo5);
+      $sistema->AddVooCalendario($voo5_2);
+      $sistema->AddVooCalendario($voo6);
+      $sistema->AddVooCalendario($voo6_2);
+      $sistema->AddVooCalendario($voo7);
+      $sistema->AddVooCalendario($voo7_2);
+      $sistema->AddVooCalendario($voo8);
+      $sistema->AddVooCalendario($voo8_2);
       
 
     //cliente realizando a compra de passagem
@@ -92,15 +153,21 @@
       $sistema->criaPassageiro($passageiro1);
 
       //consulta viagem deve ser usado com os parametros que o cliente quer para comprar a viagem, por conta do erro do calendário é impossivel agora
-      //dentro de compraPassagem deve ser chamado o consultaViagem
-        $voosLatam = $companhia1->getVoos();
-        $voosAzul = $companhia2->getVoos();
-        //$distancia = new Rota($confins);
-        //$distancia->addEndereço($congonhas->getEndereço());
-        //$distancia->addEndereço($afonsopena->getEndereço());
-        //distancia->getDistancia não funciona
-        $cliente1->compraPassagem($confins->getCidade(), $afonsopena->getCidade(), "1100", "75", "2", $passageiro1, $voosAzul);
-        
+        //dentro de compraPassagem deve ser chamado o consultaViagem
+          $voosLatam = $companhia1->getVoos();
+          $voosAzul = $companhia2->getVoos();
+          //$distancia = new Rota($confins);
+          //$distancia->addEndereço($congonhas->getEndereço());
+          //$distancia->addEndereço($afonsopena->getEndereço());
+          //distancia->getDistancia não funciona
+          $cliente1->compraPassagem($confins->getCidade(), $afonsopena->getCidade(), "1100", "75", "2", $passageiro1, $voosAzul);
+      
+      //realizando o CHECK-IN
+        $passageiro1->check_in(0);
+
+
+
+
       $sistema->save();
   }
 
@@ -118,6 +185,17 @@
       */
 
     //printando as passagens dos passageiros
+      /*
       $passageiros = $sistemas[0]->getPassageiros();
       print_r($passageiros);
+      */
+
+    //printando as viagens
+      $calendario = $sistemas[0]->getCalendario();
+      echo "Viagens nos próximos 30 dias:\n";
+      /*for($i = 0; $i < count($calendario); $i++){
+        $viagem = $sistemas[0]->getViagens($i);
+        print_r($viagem);
+      }
+      echo "\n";*/
   }

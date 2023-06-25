@@ -98,5 +98,12 @@
       return $this->destino;
     }
 
+    public function getVoo($i){
+      return $this->voosP[$i];
+    }
+
     public function __destruct(){ }
   }
+
+    
+  
