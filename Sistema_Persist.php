@@ -172,6 +172,7 @@
       $confins_UFMG = new Rota($confins);
       $piloto = new Funcionario("Lucas", "09424656602", "09424656602", "Brasileiro", "06/03/2003", "lucasaraujoresende21@gmail.com", "2578465057", "Rua Professor Kálman Sibalszky, 194 - Garças, Belo Horizonte - MG", $companhia1, $confins);
       $confins_UFMG->addFuncionario($piloto);
+      echo("O Funcionário será pego pela van às ");
       echo($confins_UFMG->setHorarioPartida($sistema->getViagemDia(0,0)));
       echo("\n");
 

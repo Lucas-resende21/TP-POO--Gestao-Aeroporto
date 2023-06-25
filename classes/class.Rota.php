@@ -1,6 +1,7 @@
 <?php
   include_once("persist.php");
   include_once("class.Funcionario.php");
+  include_once("class.Sistema.php");
 
   class Rota extends persist{
     
@@ -28,12 +29,13 @@
 
     
     public function CalculaDistancia(){
+      $key = Sistema::getKey();
       for($i=0; $i<count($this->trajeto)-1; $i++){
       $url = 'https://maps.googleapis.com/maps/api/directions/json';
       $params = array(
         'origin' => $this->trajeto[$i], // Minha casa
         'destination' => $this->trajeto[$i+1], // Ufmg
-        'key' => 'AIzaSyDptEOEPM1XmE6FTdEs3UpiJR-yAaI0krA'
+        'key' => $key
       );
       $url .= '?' . http_build_query($params);
       $curl = curl_init();

@@ -22,6 +22,7 @@
     private $sessao;
     public Log $logSist;
     public static $instance;
+    public static $API_KEY = "AIzaSyDptEOEPM1XmE6FTdEs3UpiJR-yAaI0krA";
     
 
 
@@ -35,6 +36,10 @@
         self::$instance = new Sistema();
       }
       return self::$instance;
+    }
+
+    public static function getKey(){
+      return self::$API_KEY;
     }
     
     public function criaCalendario(){

@@ -1,5 +1,6 @@
 <?php
 include_once("class.Pessoa.php");
+include_once("class.Sistema.php");
 
 class Funcionario extends Pessoa {
     private $CHT;
@@ -17,7 +18,7 @@ class Funcionario extends Pessoa {
 
     public function setCoordenada($_endereco){
       $endereco = urlencode($_endereco);
-      $chave_api = 'AIzaSyDptEOEPM1XmE6FTdEs3UpiJR-yAaI0krA';
+      $chave_api = Sistema::getKey();
       $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$endereco}&key={$chave_api}";
       $resposta = file_get_contents($url);
       $resposta_json = json_decode($resposta);
