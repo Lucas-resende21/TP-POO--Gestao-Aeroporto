@@ -1,5 +1,6 @@
 <?php
-
+  include_once("class.Sistema.php");
+  include_once("class.Log.php");
 class Aeroporto{
     protected $sigla;
     protected $cidade;

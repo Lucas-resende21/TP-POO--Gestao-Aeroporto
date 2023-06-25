@@ -3,6 +3,8 @@
   include_once("class.Voo.php");
   include_once("class.Passagem.php");
   include_once("persist.php");
+  include_once("class.Sistema.php");
+  include_once("class.Aeroporto.php");
   
   class Companhia extends persist{
     
@@ -17,6 +19,7 @@
     private $_passagens = array(); 
     private $_funcionarios = array();
     static $local_filename = "companhia.txt";
+    private $sistema;
 
     
     public function __construct(string $nome, string $cod, string $razsocial, int $CNPJ, string $sigla) {
@@ -41,9 +44,13 @@
     
 
     public function adicionaAeronave(string $fab, string $mod, int $capPsg, float $capCarg, string $reg) {
-      
+      if(Sistema::getInstance()->getSessao() == 'NULL'){
+        throw new Exception("Não há um usuário Logado");
+      }
       $aeronave = new Aeronave($fab, $mod, $capPsg, $capCarg, $reg);
       $this->_aeronaves[] = $aeronave;
+      $usuario = Sistema::getInstance()->getUser();
+      Sistema::getInstance()->logSist->escrita("Aeronave $reg criada pelo usuario $usuario");
     }
 
     public function removeAeronave(Aeronave $aeronave){
@@ -68,6 +75,14 @@
     }
     
     public function setVoo($voo){
+      if(Sistema::getInstance()->getSessao() == 'NULL'){
+        throw new Exception("Não há um usuário Logado");
+      }
+      $usuario = Sistema::getInstance()->getUser();
+      $frase1 = $voo->getOrigem()->getCidade();
+      $frase2 = $voo->getDestino()->getCidade();
+      $frase = $frase1." ".$frase2;
+      Sistema::getInstance()->logSist->escrita("Voo $frase criado pelo usuario $usuario");
       $this->_voos[] = $voo;
     }
     

@@ -20,7 +20,7 @@
     private $usuarios = array();
     private $voos = array();
     private $sessao;
-    private Log $logSist;
+    public Log $logSist;
     public static $instance;
     
 
@@ -38,6 +38,11 @@
     }
     
     public function criaCalendario(){
+    if($this->sessao == 'NULL'){
+        throw new Exception("Não há um usuário Logado");
+      }
+    $usuario = $this->getUser();
+    $this->logSist->escrita("Calendário criado pelo usuario $usuario");
     $_numdias = 30;
     date_default_timezone_set("America/Sao_Paulo");
     $Dia = date("Y/m/d"); 
@@ -94,6 +99,12 @@
     }
 
     public function criaAeroporto(Aeroporto $_aeroporto){
+      if($this->sessao == 'NULL'){
+        throw new Exception("Não há um usuário Logado");
+      }
+      $nome = $_aeroporto->getCidade();
+      $usuario = $this->getUser();
+      $this->logSist->escrita("Aeroporto $nome criado pelo usuario $usuario");
       $this->aeroportos[] = $_aeroporto;
     }
 

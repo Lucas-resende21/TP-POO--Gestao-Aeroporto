@@ -69,8 +69,7 @@
       $sistema->criaCliente($cliente1);
       $sistema->criaPassageiro($passageiro1);
 
-      $cliente1->compraPassagem($voo1_2->getOrigem(), $voo1_2->getDestino(), $voo1_2->getDistancia(), "40", "2", $passageiro1, $voo1_2);
-      // Ta dando erro
+      //Ultimo Paragráfo 
       
     }
 
