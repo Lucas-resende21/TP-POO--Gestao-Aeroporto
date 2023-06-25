@@ -10,6 +10,13 @@
     private $pontos;
     private $Passagem;
 
+    public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email, $_numRegistro, PlanoMilhagem $_programaDeMilhagem){
+      parent::__construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email);
+      $this->numRegistro = $_numRegistro;
+      $this->programaDeMilhagem = $_programaDeMilhagem;
+      $this->pontos = 0;
+    }
+
     public function cancelaPassagem(Passagem $p, Companhia $c)
     {
       if($this->Passagem == $p)

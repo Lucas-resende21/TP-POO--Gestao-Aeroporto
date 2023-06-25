@@ -59,4 +59,8 @@
     public function getViagemUnica($_i){
       return($this->viagens[$_i]);
     }
+    
+    public function getData(){
+      return $this->data;
+    }
   }

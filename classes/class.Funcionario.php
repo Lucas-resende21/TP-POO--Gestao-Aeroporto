@@ -52,3 +52,4 @@ class Funcionario extends Pessoa {
       return $this->aeroportoBase;
     }
 }
+

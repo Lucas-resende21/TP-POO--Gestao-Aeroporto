@@ -6,7 +6,6 @@
    class Viagem extends Voo
   {
     private $status;
-    private $data;
 
     public function __construct($_duracao, $_horarioPartida, $_horarioChegada, $_codigoDeVoo, $_Origem, $_Destino, $_sigla, $_freqSem, $_tarifa, $_status)
     {
@@ -19,14 +18,18 @@
       return $_duracao;
     }
 
-    public function setData($_data){
-      $this->data = $_data;
+    public function assentosDisponiveis(Voo $v){
+      $_count = 0;
+      for($i=0; $i < $v->getAeronave()->getAssentos(); $i++)
+      {  
+        if($v->getAssento($i) == 0)
+        {
+          $_count++;
+        }
+      }
+      return $_count;
     }
 
-    public function getData(){
-      return $this->data;
-    }
-    
     public function __destruct() {}
 
     // Adequar o construtor de viagem aos novos atributos de Voo pra usar ele em Dia

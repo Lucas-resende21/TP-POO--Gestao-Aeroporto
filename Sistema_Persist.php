@@ -147,25 +147,25 @@
       
 
     //cliente realizando a compra de passagem
-      $cliente1 = new Cliente("Neymar Jr", "14546132", "76529069471", "Brasileiro", "05/02/1992", "neymarjr@gmail.com");
-      $sistema->criaCliente($cliente1);
-      $passageiro1 = new PassageiroVIP("Luiz Gonzaga", "72486349", "15789345789", "Brasileiro", "13/12/1912", "luizgonzaga@gmail.com", "45687", );
-      $sistema->criaPassageiro($passageiro1);
+    $cliente1 = new Cliente("Neymar Jr", "14546132", "76529069471", "Brasileiro", "05/02/1992", "neymarjr@gmail.com");
+    $sistema->criaCliente($cliente1);
+    $passageiro1 = new PassageiroVIP("Luiz Gonzaga", "72486349", "15789345789", "Brasileiro", "13/12/1912", "luizgonzaga@gmail.com", "45687", $companhia2->getPlanoDeMilhagem());
+    $sistema->criaPassageiro($passageiro1);
 
-      //consulta viagem deve ser usado com os parametros que o cliente quer para comprar a viagem, por conta do erro do calendário é impossivel agora
-        //dentro de compraPassagem deve ser chamado o consultaViagem
-          $voosLatam = $companhia1->getVoos();
-          $voosAzul = $companhia2->getVoos();
-          //$distancia = new Rota($confins);
-          //$distancia->addEndereço($congonhas->getEndereço());
-          //$distancia->addEndereço($afonsopena->getEndereço());
-          //distancia->getDistancia não funciona
-          $cliente1->compraPassagem($confins->getCidade(), $afonsopena->getCidade(), "1100", "75", "2", $passageiro1, $voosAzul);
-      
-      //realizando o CHECK-IN
-        $passageiro1->check_in(0);
+    //consulta viagem deve ser usado com os parametros que o cliente quer para comprar a viagem, por conta do erro do calendário é impossivel agora
+      //dentro de compraPassagem deve ser chamado o consultaViagem
+        $voosLatam = $companhia1->getVoos();
+        $voosAzul = $companhia2->getVoos();
+        //$distancia = new Rota($confins);
+        //$distancia->addEndereço($congonhas->getEndereço());
+        //$distancia->addEndereço($afonsopena->getEndereço());
+        //distancia->getDistancia não funciona
+        $cliente1->compraPassagem($confins->getCidade(), $afonsopena->getCidade(), "1100", "75", "2", $passageiro1, $voosAzul);
+    
+    //realizando o CHECK-IN e imprimindo cartão de embarque
+      $passageiro1->check_in(0);
 
-
+    //realizando a compra da viagem de volta pela Latam
 
 
       //Implementando Rota 
@@ -177,7 +177,7 @@
 
       $sistema->save();
 
-  if( 0 ){
+  if( 1 ){
     $sistemas = Sistema::getRecords();
     //printando os voos das companhias
       /*
@@ -205,4 +205,4 @@
       }
       echo "\n";*/
   }
-  }
+}

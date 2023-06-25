@@ -68,7 +68,7 @@
       }
     }
 
-    public function assentosDisponiveis(){
+    /*public function assentosDisponiveis(){
       $_count = 0;
       for($i=0; $i<$this->aeronave->getAssentos(); $i++)
       {  
@@ -78,7 +78,7 @@
         }
       }
       return $_count;
-    }
+    }*/
 
     public function adicionaTripulacao($nome, $documento, $CPF, $nacionalidade, $dataDeNascimento, $email,               $CHT, $coordx, $coordy, $companhiaAerea, $aeroportoBase){
       
@@ -119,6 +119,14 @@
 
     public function getTarifa(){
       return $this->tarifa;
+    }
+
+    public function getAeronave(){
+      return $this->aeronave;
+    }
+
+    public function getAssento($i){
+      return $this->assentos[$i];
     }
     
     static public function getFilename() {

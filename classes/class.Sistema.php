@@ -60,9 +60,6 @@
     }
 
     public function AddVooCalendario(Voo $_voo){
-      if(Sistema::getInstance()->getSessao() == 'NULL'){
-        throw new Exception("Não há um usuário Logado");
-      }
       for($i = 0; $i <= 30; $i++){
         if($_voo->getFrequencia() == $this->calendario[$i]->getSem()){
             $this->calendario[$i]->setViagem($_voo);
@@ -175,12 +172,8 @@
       return($this->calendario);
     }
 
-    public function getViagensDia($_i){
+    public function getViagens($_i){
       return($this->calendario[$_i]->getViagem());
-    }
-
-    public function getViagemDia($_dia, $_viagem){
-      return($this->calendario[$_dia]->getViagemUnica($_viagem));
     }
 
 
@@ -193,15 +186,20 @@
     atender o deslocamento total. O valor total de uma opção de trajeto deverá ser exibido, 
     além dos horários de embarque das viagens. A disponibilidade de assentos deve ser 
     validada. */
-    public function consultaViagens($_origem, $_destino, $_data, $_numPassageiros){
-      for($i=0; $i<90; $i++)
-      {
-        if($this->voos[$i]->getOrigem() == $_origem){
-        }elseif($this->voos[$i]->getDestino() == $_destino){
-          }elseif($this->voos[$i]->getData() == $_data){
-            }elseif($this->voos[$i]->assentosDisponiveis() >= $_numPassageiros){
-              return $this->voos[$i];}
+    public function consultaViagens($_origem, $_destino, $_data, $_numPassageiros, Voo $v){
+      $viagensCorrespondentes = array();
+      foreach($this->calendario as $Dia){
+        for($i = 0; $i < count($Dia->getViagens()); $i++){
+          if($Dia->getViagem($i)->getOrigem() == $_origem
+          && $Dia->getViagem($i)->getDestino() == $_destino
+          && /*$Dia->getViagem($i)->assentosDisponiveis($v) >= $_numPassageiros*/
+          $Dia->getData() == $_data)
+          {
+            $viagensCorrespondentes[] = $Dia->getViagem($i);
+          }
+        }
       }
+      return $viagensCorrespondentes;
     }
     
 
