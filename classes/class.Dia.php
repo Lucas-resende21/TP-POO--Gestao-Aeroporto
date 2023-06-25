@@ -1,6 +1,9 @@
 <?php
   include_once("class.Voo.php");
   include_once("class.Viagem.php");
+  include_once("class.Sistema.php");
+  include_once("class.Log.php");
+
   class Dia{
     private $DiaDaSemana;
     private $viagens = array();
@@ -37,7 +40,12 @@
     }
 
     public function setViagem($_Voo){
-      $this->viagens[] = new Viagem($_Voo->getDuracao(), $_Voo->getHorarioP(), $_Voo->getHorarioC(), $_Voo->getCodigo(), $_Voo->getOrigem(), $_Voo->getDestino(), $_Voo->getSigla(), $_Voo->getFrequencia(), $_Voo->getTarifa(), "pendente");
+      $viagem = new Viagem($_Voo->getDuracao(), $_Voo->getHorarioP(), $_Voo->getHorarioC(), $_Voo->getCodigo(), $_Voo->getOrigem(), $_Voo->getDestino(), $_Voo->getSigla(), $_Voo->getFrequencia(), $_Voo->getTarifa(), "pendente");
+      $viagem->setData($this->data);
+      $this->viagens[] = $viagem;
+      $frase = $viagem->getOrigem()." ".$viagem->getDestino()." Na data ".$viagem->getData();
+      $usuario = Sistema::getInstance()->getUser();
+      Sistema::getInstance()->logSist->escrita("Viagem $frase criada pelo usuario $usuario");
     }
 
     public function getSem(){

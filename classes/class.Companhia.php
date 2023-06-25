@@ -103,8 +103,8 @@
           }
       }
     }
-    public function setPlanoDeMilhagem(){
-      $this->_planoDeMilhagem;
+    public function setPlanoDeMilhagem(PlanoMilhagem $_planoMilhagem){
+      $this->_planoDeMilhagem = $_planoMilhagem;
     }
     public function getSigla(){
       return $this->_sigla;
