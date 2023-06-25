@@ -65,6 +65,9 @@
     }
 
     public function AddVooCalendario(Voo $_voo){
+      if(Sistema::getInstance()->getSessao() == 'NULL'){
+        throw new Exception("Não há um usuário Logado");
+      }
       for($i = 0; $i <= 30; $i++){
         if($_voo->getFrequencia() == $this->calendario[$i]->getSem()){
             $this->calendario[$i]->setViagem($_voo);
@@ -179,6 +182,10 @@
 
     public function getViagens($_i){
       return($this->calendario[$_i]->getViagem());
+    }
+
+    public function getViagemDia($_dia, $_viagem){
+      return($this->calendario[$_dia]->getViagemUnica($_viagem));
     }
 
 
