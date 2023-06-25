@@ -102,6 +102,10 @@
       return $this->voosP[$i];
     }
 
+    public function getAssento(){
+      return $this->assento;
+    }
+
     public function __destruct(){ }
   }
 

@@ -12,9 +12,10 @@ class Passageiro extends Pessoa
     {
         return get_called_class()::$local_filename;
     }
-
+    private $nome;
     private $status;
     private $passagem;
+    private $cartaoDeEmbarque;
     private $histDeVoos = array();
 
     public function __construct($_nome, $_documento, $_CPF, $_nacionalidade, $_dataDeNascimento, $_email)
@@ -23,18 +24,16 @@ class Passageiro extends Pessoa
         
     }
 
-    public function cancelaPassagem(Passagem $p, Companhia $c) //implementar custo de cancelamento caso passageiro comum
+    public function cancelaPassagem(Passagem $p, Companhia $c)
     {
-        for ($i = 0; i < sizeof($this->_passagens); $i++) {
-            if ($this->_passagens[$i] == $p) {
-              unset($this->_passagens[$i]);
-              print_r("Passagem cancelada.");
-              print_r("Valor do cancelamento: R$80,00");
-              $p->setPreco(80);
-              echo ("</p>");
-              break;
-            }
+        if($this->passagem == $p)
+        {
+            print_r("Passagem cancelada.");
+            print_r("Valor do cancelamento: R$80,00");
+            $p->setPrecoCancelamento(80);
+            $this->passagem == NULL;
         }
+        echo "\n";
     }
 
     public function alteraPassagem(Passagem $p, Companhia $c)
@@ -43,7 +42,7 @@ class Passageiro extends Pessoa
         print_r("Passagem alterada.");
         print_r("Valor do alteração: R$25,00");
         $Passagem->setPrecoAlteracao(25);
-        echo ("</p>");
+        echo "\n";
     }
 
     public function check_in($i)//tirei o voo p porque o passageiro já tem os voos armazenados na passagem dele
@@ -55,9 +54,10 @@ class Passageiro extends Pessoa
 
         $prazoMinimo = $horarioPartida->sub(new DateInterval('P2D')); // Subtrai 48 horas do horário de partida
 
-        if ($horarioAtual > $prazoMinimo && $horarioAtual < $limiteCheckin) {
+        if (!($horarioAtual > $prazoMinimo && $horarioAtual < $limiteCheckin)) {
             $this->status = "Check-in realizado";
-        } elseif ($horarioAtual >= $limiteCheckin) {
+            $this->cartaoDeEmbarque = new CartaoEmbarque($this->nome, $v->getOrigem(), $v->getDestino(), $this->passagem->getAssento(), $v->getHorarioP(), $v->getHorarioP());
+        } elseif (!($horarioAtual >= $limiteCheckin)) {
             $this->status = "NO SHOW";
         } else {
             // Caso o check-in esteja sendo feito antes das 48 horas do voo

@@ -106,6 +106,11 @@
     public function setPlanoDeMilhagem(PlanoMilhagem $_planoMilhagem){
       $this->_planoDeMilhagem = $_planoMilhagem;
     }
+
+    public function getPlanoDeMilhagem(){
+      return $this->_planoDeMilhagem;
+    }
+
     public function getSigla(){
       return $this->_sigla;
     }
